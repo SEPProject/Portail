@@ -1,12 +1,39 @@
-'use strict';
+var phoneApp = angular.module('phoneApp',[]);
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+phoneApp.controller('PhoneListCtrl', function($scope){
+
+  $scope.phones = [
+
+    {'nom':'Jules','marque':'wiko'},
+    {'nom':'Mat','marque':'samsung'}
+  ];
+
+
+});
+
+phoneApp.controller('mainCtrl', function($scope){
+  $scope.accueilWord = 'Page daccueil';
+
+  $scope.trieur = 'nom';
+
+  $scope.phones = [
+
+    {'nom':'Jules3','marque':'wiko3'},
+    {'nom':'jardoul','marque':'samsung3'},
+    {'nom':'Mat3','marque':'samsung3'},
+    {'nom':'marine','marque':'samsung3'},
+    {'nom':'matthieu','marque':'samsung3'},
+    {'nom':'ramonville','marque':'samsung3'}
+  ];
+
+});
+
+phoneApp.controller('PhoneListCtrl2', function($scope){
+
+  $scope.phones = [
+
+    {'nom':'Jules2','marque':'wiko2'},
+    {'nom':'Mat2','marque':'samsung2'}
+  ];
+
+});
