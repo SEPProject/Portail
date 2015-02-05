@@ -17,12 +17,10 @@
   <option value="marque">marque</option>
 </select>
 
-
 <p>Search : <input ng-model="bob"></p>
 <p>Valeur de la selection : {{bob}}</p>
 <p>Trier par : {{trieur}}</p>
 
-<\br>
 <p>Liste des telephonne</p>
 
 <li ng-repeat="phone in phones | filter:bob | orderBy:trieur">
