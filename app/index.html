@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en" ng-app="phoneApp" ng-controller="mainCtrl">
 <head>
-  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
   <title ng-bind-template="{{bob}}">Google Phone Gallery</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="bower_components/angular-material/themes/red-theme.css">
   <script src="bower_components/angular/angular.js"></script>
   <script src="app.js"></script>
 </head>
@@ -19,6 +21,23 @@
 
 <p>Search : <input ng-model="bob"></p>
 <p>Valeur de la selection : {{bob}}</p>
+
+<md-button>
+  <md-icon icon="bower_components/material-design-icons/navigation/svg/design/ic_menu_24px.svg" style="width: 24px; height: 24px;">ddd</md-icon>
+</md-button>
+
+<md-button md-no-ink class="md-primary">Primary (md-noink)</md-button>
+
+<md-checkbox ng-model="isChecked" aria-label="Finished?">
+  Finished ?
+</md-checkbox>
+<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+  No Ink Effects
+</md-checkbox>
+<md-checkbox ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+  Disabled
+</md-checkbox>
+
 <p>Trier par : {{trieur}}</p>
 
 <p>Liste des telephonne</p>

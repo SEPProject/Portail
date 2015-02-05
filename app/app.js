@@ -11,20 +11,24 @@ phoneApp.controller('PhoneListCtrl', function($scope){
 
 });
 
-phoneApp.controller('mainCtrl', function($scope){
+phoneApp.controller('mainCtrl', function($scope,$http){
+  $http.get('my.json').success(function(data){
+    $scope.phones = data;
+  });
   $scope.accueilWord = 'Page daccueil';
 
   $scope.trieur = 'nom';
 
-  $scope.phones = [
 
-    {'nom':'Jules3','marque':'wiko3'},
-    {'nom':'jardoul','marque':'samsung3'},
-    {'nom':'Mat3','marque':'samsung3'},
-    {'nom':'marine','marque':'samsung3'},
-    {'nom':'matthieu','marque':'samsung3'},
-    {'nom':'ramonville','marque':'samsung3'}
-  ];
+  /* $scope.phones = [
+
+     {'nom':'Jules3','marque':'wiko3'},
+     {'nom':'jardoul','marque':'samsung3'},
+     {'nom':'Mat3','marque':'samsung3'},
+     {'nom':'marine','marque':'samsung3'},
+     {'nom':'matthieu','marque':'samsung3'},
+     {'nom':'ramonville','marque':'samsung3'}
+   ];*/
 
 });
 
