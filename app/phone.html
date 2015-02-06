@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<p>{{accueilWord}}</p>
+
+<select ng-model="trieur">
+    <option value="nom">nom</option>
+    <option value="marque">marque</option>
+</select>
+
+<p>Search : <input ng-model="bob"></p>
+<p>Valeur de la selection : {{bob}}</p>
+
+<md-button ng-click="go('/bob')">
+    dead
+</md-button>
+
+<p>Trier par : {{trieur}}</p>
+
+<p>Liste des telephonne</p>
+
+<li ng-repeat="phone in phones | filter:bob | orderBy:trieur">
+
+    <p> {{phone.nom}} et {{phone.marque}} </p>
+
+</li>
+
+
+
+</body>
+</html>

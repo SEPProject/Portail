@@ -1,54 +1,29 @@
 <!doctype html>
-<html lang="en" ng-app="phoneApp" ng-controller="mainCtrl" md-theme="red">
+<html lang="en" ng-app="phoneApp" ng-controller="mainCtrl">
 <head>
 
-  <script src="bower_components/angular/angular.js"></script>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
-  <link rel="stylesheet" href="/PortailSep/node_modules/bootstrap/dist/css/bootstrap.css">
+
   <link rel="stylesheet" href="app.css">
-
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
-    <script src="bower_components/angular-material/angular-material.min.js"></script>
-
   <link rel="stylesheet" href="/PortailSep/node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
   <script src="/PortailSep/node_modules/angular-material/angular-material.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="bower_components/hammerjs/hammer.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
-    <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/jshashes/hashes.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="app.js"></script>
+  <script src="phoneController.js"></script>
+  <script src="watchController.js"></script>
 
 </head>
 
 <body>
-<p>{{accueilWord}}</p>
-
-<select ng-model="trieur">
-  <option value="nom">nom</option>
-  <option value="marque">marque</option>
-</select>
-
-<p>Search : <input ng-model="bob"></p>
-<p>Valeur de la selection : {{bob}}</p>
-
-    <md-button>
-      dead
-    </md-button>
-
-<p>Trier par : {{trieur}}</p>
-
-<p>Liste des telephonne</p>
-
-<li ng-repeat="phone in phones | filter:bob | orderBy:trieur">
-
- <p> {{phone.nom}} et {{phone.marque}} </p>
-
-</li>
-
+<p>BOUBY BOB</p>
+<div ng-view></div>
+<p>FIIIN</p>
 </body>
 </html>

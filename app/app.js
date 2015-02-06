@@ -1,5 +1,15 @@
 
-var phoneApp = angular.module('phoneApp',['ngMaterial']);
+var phoneApp = angular.module('phoneApp',['ngMaterial','ngRoute','phoneController','watchController']);
+
+phoneApp.config(['$routeProvider',function($routeProvider){
+    $routeProvider.when('/bobe',{
+        templateUrl:'phone.html',
+        controller:'listCtrl'
+    }).when('/bob',{
+        templateUrl:'watch.html',
+        controller:'watchCtrl'
+    });
+}]);
 
 phoneApp.controller('PhoneListCtrl', function($scope){
 
