@@ -1,4 +1,5 @@
-var phoneApp = angular.module('phoneApp',[]);
+
+var phoneApp = angular.module('phoneApp',['ngMaterial']);
 
 phoneApp.controller('PhoneListCtrl', function($scope){
 
