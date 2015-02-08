@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<p>{{test}}</p>
+
 <select ng-model="trieur">
     <option value="nom">nom</option>
     <option value="marque">marque</option>
@@ -15,7 +17,7 @@
 <p>Valeur de la selection : {{bob}}</p>
 
 <md-button ng-click="go('/bobe')">
-    dead
+    {{buttonName}}
 </md-button>
 
 <p>Trier par : {{trieur}}</p>

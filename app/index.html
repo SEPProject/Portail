@@ -23,6 +23,28 @@
 
 <body>
 <p>BOUBY BOB</p>
+<md-button ng-click="go('/bob')">
+  WATCH
+</md-button>
+
+<div ng-controller="sideNavCtrl">
+  <md-button ng-click="toggleRightSide()">
+    PHONE
+  </md-button>
+</div>
+
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">Sidenav Right</h1>
+  </md-toolbar>
+    <md-button ng-click="close()" class="md-primary">
+      Close Sidenav Right
+    </md-button>
+</md-sidenav>
+
+
+
 <div ng-view></div>
 <p>FIIIN</p>
 </body>

@@ -11,6 +11,14 @@ phoneApp.config(['$routeProvider',function($routeProvider){
     });
 }]);
 
+phoneApp.controller('sideNavCtrl', function($scope,$mdSidenav){
+
+    $scope.toggleRightSide = function(){
+        $mdSidenav('left').toggle();
+    };
+
+});
+
 phoneApp.controller('PhoneListCtrl', function($scope){
 
   $scope.phones = [
@@ -22,7 +30,7 @@ phoneApp.controller('PhoneListCtrl', function($scope){
 
 });
 
-phoneApp.controller('mainCtrl', function($scope,$http){
+phoneApp.controller('mainCtrl', function($scope,$http,$location){
   $http.get('my.json').success(function(data){
     $scope.phones = data;
   });
@@ -40,6 +48,10 @@ phoneApp.controller('mainCtrl', function($scope,$http){
      {'nom':'matthieu','marque':'samsung3'},
      {'nom':'ramonville','marque':'samsung3'}
    ];*/
+
+    $scope.go = function(path){
+        $location.path(path);
+    }
 
 });
 

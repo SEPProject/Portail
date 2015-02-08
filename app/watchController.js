@@ -9,7 +9,12 @@ watchController.controller('watchCtrl',function($scope,$http,$location){
         $scope.phones = data;
     });
 
+    $http.get('https://docs.angularjs.org/tutorial/step_08').success(function(data){
+       $scope.test = data;
+    });
+
     $scope.go = function (path) {
         $location.path( path );
     };
+    $scope.buttonName ='Phone';
 });

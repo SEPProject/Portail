@@ -13,4 +13,5 @@ phoneController.controller('listCtrl',function($scope,$http,$location){
     $scope.go = function(path){
         $location.path(path);
     };
+    $scope.buttonName ='Watch';
 });
