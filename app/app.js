@@ -50,6 +50,8 @@ phoneApp.controller('mainCtrl', function($scope,$http,$location){
 
   $scope.trieur = 'nom';
 
+    $scope.isCollapsed = true;
+
 
   /* $scope.phones = [
 
