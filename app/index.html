@@ -23,9 +23,6 @@
 
 <body>
 <p>BOUBY BOB</p>
-<md-button ng-click="isCollapsed = !isCollapsed">
-  WATCH
-</md-button>
 
 <div ng-controller="sideNavCtrl">
   <md-button ng-click="toggleRightSide()">
@@ -41,18 +38,27 @@
 </md-sidenav>
 
 
-<md-card ng-if="isCollapsed" ng-click="isCollapsed = !isCollapsed">
-  <md-item>
+
+<div ng-controller="mainCtrl">
+  <md-button ng-click="trieur = 'ffff'">
+    {{trieur}}
+  </md-button>
+
+
+  <md-button ng-click="isCollapsed = !isCollapsed">
+    WATCH
+  </md-button>
+<md-card ng-click="isCollapsed = !isCollapsed">
+
+  <md-item >
     <h2>Paracosm</h2>
+  </md-item>
+
+  <md-item ng-show="isCollapsed">
+    <h2>Voici la description de notre applet plus ou moins bien faite et compléte</h2>
   </md-item>
 </md-card>
 
-<md-card ng-if="!isCollapsed" ng-click="isCollapsed = !isCollapsed">
-  <h2>Paracosm</h2>
-  <p>
-    The titles of Washed Out's breakthrough song and the first single from Paracosm share the * two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  </p>
-</md-card>
 
 <div ng-controller="tabCtrl">
 
