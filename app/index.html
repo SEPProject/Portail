@@ -34,15 +34,26 @@
 </div>
 
 
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-  <md-toolbar class="md-theme-light">
+<md-sidenav class="md-sidenav-left" md-component-id="left">
+  <md-toolbar>
     <h1 class="md-toolbar-tools">Sidenav Right</h1>
   </md-toolbar>
-    <md-button ng-click="close()" class="md-primary">
-      Close Sidenav Right
-    </md-button>
 </md-sidenav>
 
+
+<div ng-controller="tabCtrl">
+
+  <md-tabs md-selected="selectedTab">
+
+    <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.name}}">
+      <div class="demo-tab tab{{$index%4}}" layout="column" layout-align="space-around center">
+        <div ng-bind="tab.description"></div>
+      </div>
+    </md-tab>
+
+  </md-tabs>
+
+</div>
 
 
 <div ng-view></div>

@@ -18,6 +18,18 @@ phoneApp.controller('sideNavCtrl', function($scope,$mdSidenav){
     };
 
 });
+phoneApp.controller('tabCtrl',function($scope){
+
+    $scope.selectedTab = 0;
+
+    var tabs = [
+        {'name':'Reseau','description':'Man in the middle'},
+        {'name':'Soft','description':'SQL Injection'}
+    ];
+
+    $scope.tabs = tabs;
+
+});
 
 phoneApp.controller('PhoneListCtrl', function($scope){
 
