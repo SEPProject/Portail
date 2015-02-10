@@ -1,5 +1,5 @@
 
-var phoneApp = angular.module('phoneApp',['ngMaterial','ngRoute','phoneController','watchController']);
+var phoneApp = angular.module('phoneApp',['ngMaterial','ngRoute','phoneController','watchController','ngAnimate']);
 
 phoneApp.config(['$routeProvider',function($routeProvider){
     $routeProvider.when('/bobe',{

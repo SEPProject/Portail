@@ -24,13 +24,15 @@
 
 <p>Liste des telephonne</p>
 
-<li ng-repeat="phone in phones | filter:bob | orderBy:trieur">
+<li ng-repeat="phone in phones | filter:bob | orderBy:trieur" ng-animate="'enter'">
 
     <p> {{phone.nom}} et {{phone.marque}} </p>
 
 </li>
 
+<md-button ng-click="expand = !expand">SLIDE DOWN OR UP</md-button>
 
+<p class="slide" ng-show="expand">BOUUUUUUUUUUUUUUBY</p>
 
 </body>
 </html>
