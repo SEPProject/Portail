@@ -28,3 +28,8 @@
   content: "";
   padding: 0;
 }
+
+titleToolbar {
+  text-align: center;
+  color: #ffffff;
+}
