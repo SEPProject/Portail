@@ -25,7 +25,9 @@ mainApp.config(['$routeProvider',function($routeProvider){
 mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
 
     $scope.toggleMenu = function(){
-        $mdSidenav('left').toggle();
+        if(isConnected){
+            $mdSidenav('left').toggle();
+        }
         $scope.userConnected = isConnected;
     };
 
@@ -132,7 +134,7 @@ mainApp.controller('welcomeCtrl',function($scope){
 
 mainApp.controller('appletCtrl',function($scope,$http){
     $scope.selectedTab = 0;
-
+    $scope.isConnected = isConnected;
     $http.get('/PortailSep/app/domains.json').success(function(data){
         $scope.domains = data;
     });
@@ -144,5 +146,6 @@ mainApp.controller('appletCtrl',function($scope,$http){
             data[i].isCollapsed = true;
         }
     });
+
 
 });

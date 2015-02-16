@@ -30,6 +30,18 @@
 }
 
 titleToolbar {
+  background-color: #105cb6;
+  width: 30%;
   text-align: center;
-  color: #ffffff;
+  color: red;
+  margin-left: 20%;
+}
+
+tabStyle {
+  background-color: #f8f8f8;
+  width: 25%;
+  text-align: center;
+  color: #000000;
+  margin-left: 35%;
+  margin-top: 1%;
 }
