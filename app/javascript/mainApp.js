@@ -4,7 +4,7 @@
 var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages']);
 var isConnected = false;
 
-var user = {'login':'','token':0};
+var user = {'pseudo':'','email':'','token':0};
 
 mainApp.config(['$routeProvider',function($routeProvider){
     $routeProvider.when('/signin',{
@@ -13,10 +13,16 @@ mainApp.config(['$routeProvider',function($routeProvider){
     }).when('/login',{
         templateUrl:'login.html',
         controller:'loginCtrl'
+    }).when('/welcome',{
+            templateUrl:'welcome.html',
+            controller:'welcomeCtrl'
+        }).when('/applets',{
+        templateUrl:'applets.html',
+        controller:'appletCtrl'
     });
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav){
+mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
 
     $scope.toggleMenu = function(){
         $mdSidenav('left').toggle();
@@ -28,9 +34,18 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav){
 
     $scope.userConnected = isConnected;
 
+    $scope.go = function(path){
+        $location.path(path);
+    }
+
 });
 
 mainApp.controller('loginCtrl',function($scope,$location){
+
+    $scope.go = function(path){
+        $location.path(path);
+    }
+
     $scope.login = '';
     $scope.pwd = '';
 
@@ -39,8 +54,8 @@ mainApp.controller('loginCtrl',function($scope,$location){
     $scope.connect = function(){
         isConnected  = true;
         $scope.userConnected = isConnected;
-        user.login = $scope.login;
-        //$location.path('/signin');
+        user.pseudo = $scope.login;
+        $location.path('/welcome');
     };
 
     $scope.deconnect = function(){
@@ -58,10 +73,6 @@ mainApp.controller('loginCtrl',function($scope,$location){
             $scope.userAndPassPresent = true;
         }
     };
-
-    $scope.go = function(path){
-        $location.path(path);
-    }
 
 });
 
@@ -112,5 +123,26 @@ mainApp.controller('signinCtrl',function($scope){
             $scope.pseudoOk = true;
         }
     }
+
+});
+
+mainApp.controller('welcomeCtrl',function($scope){
+    $scope.pseudo = user.pseudo;
+});
+
+mainApp.controller('appletCtrl',function($scope,$http){
+    $scope.selectedTab = 0;
+
+    $http.get('/PortailSep/app/domains.json').success(function(data){
+        $scope.domains = data;
+    });
+
+    $http.get('/PortailSep/app/applets.json').success(function(data){
+        $scope.applets = data;
+        for(var i in data)
+        {
+            data[i].isCollapsed = true;
+        }
+    });
 
 });

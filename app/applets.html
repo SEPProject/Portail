@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+    <md-tabs md-selected="selectedTab">
+        <md-tab ng-repeat="tab in domains" ng-disabled="tab.disabled" label = "{{tab.name}}">
+
+            <div ng-bind="tab.description"></div>
+
+            <div ng-repeat="applet in applets" ng-if="applet.domain === tab.name">
+
+                <md-card ng-click="applet.isCollapsed = !applet.isCollapsed">
+                    <md-item>
+                        <h1>
+                            {{applet.name}}
+                        </h1>
+                    </md-item>
+
+                    <md-item ng-hide="applet.isCollapsed">
+                        <h2>
+                            {{applet.description}}
+                        </h2>
+                    </md-item>
+
+                </md-card>
+
+            </div>
+
+        </md-tab>
+    </md-tabs>
+
+</body>
+</html>
