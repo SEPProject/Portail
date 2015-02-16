@@ -74,19 +74,29 @@ mainApp.controller('signinCtrl',function($scope){
     $scope.pwdOk = false;
     $scope.emailOk = false;
 
-    $scope.everyInfoOk = false;
+    $scope.pwdNotEqual = {};
 
     $scope.checkPwds = function(){
         if($scope.pwd === $scope.pwd2){
             $scope.pwdOk = true;
+            $scope.pwdNotEqual = {};
         }else{
+            if(!$scope.signinForm.pwd2.$error.required){
+                $scope.pwdNotEqual = {"notEqual":true};
+            }else{
+                $scope.pwdNotEqual = {};
+            }
             $scope.pwdOk = false;
         }
     }
 
     $scope.checkEmail = function(){
         //ask the server is the email is taken or not
-        $scope.emailOk = true;
+        if($scope.signinForm.email.$error.email || $scope.signinForm.email.$error.required){
+            $scope.emailOk = false;
+        }else{
+            $scope.emailOk = true;
+        }
     }
 
     $scope.singin = function(){

@@ -16,14 +16,18 @@
                 <input type="email" required name="email" ng-model="email" ng-change="checkEmail()">
                 <div ng-messages="signinForm.email.$error">
                     <div ng-message="required">This is required.</div>
+                    <div ng-message="email">This is not an email.</div>
                 </div>
             </md-input-container>
 
             <md-input-container >
                 <label>Password</label>
-                <input type="password" required name="pwd"  ng-model="pwd">
+                <input type="password" required name="pwd"  ng-model="pwd" ng-change="checkPwds()">
                 <div ng-messages="signinForm.pwd.$error">
                     <div ng-message="required">This is required.</div>
+                </div>
+                <div ng-messages="pwdNotEqual">
+                    <div ng-message="notEqual">Password not equals.</div>
                 </div>
             </md-input-container>
 
@@ -33,6 +37,9 @@
             <div ng-messages="signinForm.pwd2.$error">
                 <div ng-message="required">This is required.</div>
             </div>
+                <div ng-messages="pwdNotEqual">
+                    <div ng-message="notEqual">Password not equals.</div>
+                </div>
             </md-input-container>
 
             <md-button ng-click="signin()" ng-show="pwdOk && emailOk">Sign-in</md-button>
