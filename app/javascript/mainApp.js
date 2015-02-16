@@ -19,6 +19,9 @@ mainApp.config(['$routeProvider',function($routeProvider){
         }).when('/applets',{
         templateUrl:'applets.html',
         controller:'appletCtrl'
+    }).when('/profile',{
+        templateUrl:'profile.html',
+        controller:'profileCtrl'
     });
 }]);
 
@@ -27,6 +30,8 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
     $scope.toggleMenu = function(){
         if(isConnected){
             $mdSidenav('left').toggle();
+        }else{
+            $scope.go('/login');
         }
         $scope.userConnected = isConnected;
     };
@@ -147,5 +152,44 @@ mainApp.controller('appletCtrl',function($scope,$http){
         }
     });
 
+
+});
+
+mainApp.controller('profileCtrl',function($scope){
+    $scope.pseudo = user.pseudo;
+    $scope.email = user.email;
+
+    $scope.pwdOk = false;
+    $scope.emailOk = false;
+    $scope.pseudoOk = false;
+
+    $scope.pwdNotEqual = {};
+
+    $scope.checkPwds = function(){
+        if($scope.pwd === $scope.pwd2){
+            $scope.pwdOk = true;
+            $scope.pwdNotEqual = {};
+        }else{
+            if(!$scope.signinForm.pwd2.$error.required){
+                $scope.pwdNotEqual = {"notEqual":true};
+            }else{
+                $scope.pwdNotEqual = {};
+            }
+            $scope.pwdOk = false;
+        }
+    };
+
+    $scope.checkEmail = function(){
+        //ask the server is the email is taken or not
+        if($scope.signinForm.email.$error.email || $scope.signinForm.email.$error.required){
+            $scope.emailOk = false;
+        }else{
+            $scope.emailOk = true;
+        }
+    };
+
+    $scope.changeInfo = function(){
+
+    };
 
 });

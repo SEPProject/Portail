@@ -6,25 +6,53 @@
 </head>
 <body>
 
-<tabStyle ng-show="!isConnected" layout="center center" layout-align="center center">
+<tabStyle ng-show="isConnected" layout="center center" layout-align="center center">
     <md-tabs md-selected="selectedTab" layout-align="center center" >
         <md-tab ng-repeat="tab in domains" ng-disabled="tab.disabled" label = "{{tab.name}}">
 
-            <div ng-bind="tab.description"></div>
+            <md-item layout-margin>
+                <div ng-bind="tab.description">
+
+                </div>
+            </md-item>
+
 
             <div ng-repeat="applet in applets" ng-if="applet.domain === tab.name">
 
-                <md-card ng-click="applet.isCollapsed = !applet.isCollapsed">
-                    <md-item>
-                        <h1>
+                <md-card >
+                    <md-toolbar layout="center center" layout-align="center center" ng-click="applet.isCollapsed = !applet.isCollapsed" >
                             {{applet.name}}
-                        </h1>
-                    </md-item>
+                    </md-toolbar>
 
-                    <md-item ng-hide="applet.isCollapsed">
-                        <h2>
+                    <md-item ng-hide="applet.isCollapsed" layout-margin>
+                        <h3>
                             {{applet.description}}
-                        </h2>
+                        </h3>
+
+                            <section >
+
+                            <md-button class="md-raised md-warn">
+                                DOWNLOAD
+                            </md-button>
+
+                            <md-button class="md-raised" ng-style="{background : 'green',color:'white'}">
+                                LAUNCH
+                            </md-button>
+
+                                <md-checkbox ng-disabled="true" ng-model="applet.done" ng-init="applet.done">
+                                    <md-item ng-if="applet.done">
+                                        Done
+                                    </md-item>
+                                    <md-item ng-if="!applet.done">
+                                        Not done
+                                    </md-item>
+                                </md-checkbox>
+
+                        </section>
+
+                        <md-item layout-margin>
+                            {{applet.duration}}
+                        </md-item>
                     </md-item>
 
                 </md-card>

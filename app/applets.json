@@ -1,25 +1,29 @@
 [
   {"name":"sql injection",
 "id":"23345",
-"duration" : "HH:MM",
+"duration" : "00:30",
 "description":"Trés dangereux",
-"domain":"Reseau"},
+"domain":"Reseau",
+    "done":true},
 
   {"name":"kiff",
     "id":"23345",
-    "duration" : "HH:MM",
+    "duration" : "00:20",
     "description":"Utile pour la saint valentin",
-    "domain":"Reseau"},
+    "domain":"Reseau",
+  "done":true},
 
   {"name":"center",
     "id":"23345",
-    "duration" : "HH:MM",
+    "duration" : "00:10",
     "description":"Data center is in da place",
-    "domain":"Soft"},
+    "domain":"Soft",
+    "done":false},
 
   {"name":"data",
   "id":"23345",
-  "duration" : "HH:MM",
+  "duration" : "00:45",
   "description":"Vol de données",
-  "domain":"Communes"}
+  "domain":"Communes",
+    "done":false}
 ]

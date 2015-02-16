@@ -9,6 +9,12 @@
 <div layout="center center" layout-align="center center">
     <boxStyle>
 
+        <div layout-margin layout="center center" layout-align="center center">
+
+            Profile informations
+
+        </div>
+
         <form name="signinForm">
 
             <md-input-container>
@@ -29,11 +35,13 @@
             </md-input-container>
 
             <md-input-container >
-                <label>Password</label>
-                <input type="password" required name="pwd"  ng-model="pwd" ng-change="checkPwds()">
-                <div ng-messages="signinForm.pwd.$error">
-                    <div ng-message="required">This is required.</div>
-                </div>
+                <label>Old password</label>
+                <input type="password"  name="oldPwd"  ng-model="oldPwd">
+            </md-input-container>
+
+            <md-input-container >
+                <label>New password</label>
+                <input type="password"  name="pwd"  ng-model="pwd" ng-change="checkPwds()">
                 <div ng-messages="pwdNotEqual">
                     <div ng-message="notEqual">Password not equals.</div>
                 </div>
@@ -41,16 +49,13 @@
 
             <md-input-container >
                 <label>Confirm password</label>
-                <input type="password" required name="pwd2" ng-model="pwd2" ng-change="checkPwds()">
-            <div ng-messages="signinForm.pwd2.$error">
-                <div ng-message="required">This is required.</div>
-            </div>
+                <input type="password"  name="pwd2" ng-model="pwd2" ng-change="checkPwds()">
                 <div ng-messages="pwdNotEqual">
                     <div ng-message="notEqual">Password not equals.</div>
                 </div>
             </md-input-container>
 
-            <md-button ng-click="signin()" ng-show="pwdOk && emailOk && pseudoOk">Sign-in</md-button>
+            <md-button ng-click="changeInfo()">Change info</md-button>
 
         </form>
     </boxStyle>
