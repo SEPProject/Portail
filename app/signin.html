@@ -12,6 +12,14 @@
         <form name="signinForm">
 
             <md-input-container>
+                <label>Pseudo</label>
+                <input required name="pseudo" ng-model="pseudo" ng-change="checkPseudo()">
+                <div ng-messages="signinForm.pseudo.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
                 <label>e-mail</label>
                 <input type="email" required name="email" ng-model="email" ng-change="checkEmail()">
                 <div ng-messages="signinForm.email.$error">
@@ -42,7 +50,7 @@
                 </div>
             </md-input-container>
 
-            <md-button ng-click="signin()" ng-show="pwdOk && emailOk">Sign-in</md-button>
+            <md-button ng-click="signin()" ng-show="pwdOk && emailOk && pseudoOk">Sign-in</md-button>
 
         </form>
     </md-whiteframe>

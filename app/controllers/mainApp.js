@@ -73,6 +73,7 @@ mainApp.controller('signinCtrl',function($scope){
 
     $scope.pwdOk = false;
     $scope.emailOk = false;
+    $scope.pseudoOk = false;
 
     $scope.pwdNotEqual = {};
 
@@ -88,7 +89,7 @@ mainApp.controller('signinCtrl',function($scope){
             }
             $scope.pwdOk = false;
         }
-    }
+    };
 
     $scope.checkEmail = function(){
         //ask the server is the email is taken or not
@@ -97,10 +98,19 @@ mainApp.controller('signinCtrl',function($scope){
         }else{
             $scope.emailOk = true;
         }
-    }
+    };
 
     $scope.singin = function(){
         //jsute sign in if every thing is OK
+    };
+
+    $scope.checkPseudo = function(){
+        //ask the server is the email is taken or not
+        if($scope.signinForm.pseudo.$error.required){
+            $scope.pseudoOk = false;
+        }else{
+            $scope.pseudoOk = true;
+        }
     }
 
 });
