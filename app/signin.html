@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div layout="center center" layout-align="center center">
+    <md-whiteframe>
+
+        <form name="signinForm">
+
+            <md-input-container>
+                <label>e-mail</label>
+                <input type="email" required name="email" ng-model="email" ng-change="checkEmail()">
+                <div ng-messages="signinForm.email.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container >
+                <label>Password</label>
+                <input type="password" required name="pwd"  ng-model="pwd">
+                <div ng-messages="signinForm.pwd.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container >
+                <label>Confirm password</label>
+                <input type="password" required name="pwd2" ng-model="pwd2" ng-change="checkPwds()">
+            <div ng-messages="signinForm.pwd2.$error">
+                <div ng-message="required">This is required.</div>
+            </div>
+            </md-input-container>
+
+            <md-button ng-click="signin()" ng-show="pwdOk && emailOk">Sign-in</md-button>
+
+        </form>
+    </md-whiteframe>
+</div>
+
+</body>
+</html>

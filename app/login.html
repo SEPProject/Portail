@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div layout="center center" layout-align="center center" ng-show="!userConnected">
+    <md-whiteframe>
+
+        <form name="loginForm">
+            <md-input-container>
+                <label>Login</label>
+                <input ng-model="login" ng-change="userOrPwdChange()">
+            </md-input-container>
+            <md-input-container >
+                <label>Password</label>
+                <input type="password" ng-model="pwd" ng-change="userOrPwdChange()">
+            </md-input-container>
+
+            <md-button ng-click="connect()" ng-show="userAndPassPresent">Connect</md-button>
+
+        </form>
+        <md-button ng-click="go('/signin')">Sign-in</md-button>
+    </md-whiteframe>
+</div>
+
+</body>
+</html>
