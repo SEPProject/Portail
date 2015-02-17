@@ -1,7 +1,7 @@
 /**
  * Created by julescantegril on 10/02/2015.
  */
-var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages']);
+var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies']);
 var isConnected = false;
 
 var user = {'pseudo':'','email':'','token':0};
@@ -25,7 +25,7 @@ mainApp.config(['$routeProvider',function($routeProvider){
     });
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
+mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore){
 
     $scope.toggleMenu = function(){
         if(isConnected){
@@ -54,11 +54,12 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
         $scope.userConnected = false;
         isConnected = false;
         $scope.go('/login');
+        $cookieStore.remove('token');
     };
 
 });
 var nbre = 0;
-mainApp.controller('loginCtrl',function($scope,$location){
+mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies){
 
     $scope.go = function(path){
         $location.path(path);
@@ -73,6 +74,17 @@ mainApp.controller('loginCtrl',function($scope,$location){
     $scope.connect = function(){
 
        // $scope.infoTry = {'badPwdLogin':true};
+
+        /*$http.get('URL').success(function(data){
+            user.email = data.email;
+            user.pseudo = data.pseudo;
+            $cookies.token = data.token;
+            $scope.infoTry = {'badPwdLogin':false};//auth ok
+            $location.path('/welcome');
+            isConnected  = true;
+        });*/
+
+
         $scope.infoTry = {'badPwdLogin':false};
 
         $scope.userConnected = isConnected;
