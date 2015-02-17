@@ -45,8 +45,19 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location){
         $location.path(path);
     }
 
-});
+    $scope.deconnect = function(){
+        $scope.login = '';
+        $scope.pwd = '';
+        user.email = '';
+        user.login = '';
+        user.token = '';
+        $scope.userConnected = false;
+        isConnected = false;
+        $scope.go('/login');
+    };
 
+});
+var nbre = 0;
 mainApp.controller('loginCtrl',function($scope,$location){
 
     $scope.go = function(path){
@@ -55,29 +66,23 @@ mainApp.controller('loginCtrl',function($scope,$location){
 
     $scope.login = '';
     $scope.pwd = '';
+    $scope.blank = '';
 
     $scope.userConnected = isConnected;
 
     $scope.connect = function(){
-        isConnected  = true;
+
+       // $scope.infoTry = {'badPwdLogin':true};
+        $scope.infoTry = {'badPwdLogin':false};
+
         $scope.userConnected = isConnected;
         user.pseudo = $scope.login;
-        $location.path('/welcome');
-    };
 
-    $scope.deconnect = function(){
-        $scope.login = '';
-        $scope.pwd = '';
-        $scope.userOrPwdChange();
-        $scope.userConnected = false;
-    };
-
-    $scope.userAndPassPresent = false;
-    $scope.userOrPwdChange = function(){
-        if($scope.login === '' || $scope.pwd === ''){
-            $scope.userAndPassPresent = false;
+        if(!$scope.infoTry.goodPwdLogin){
+            $location.path('/welcome');
+            isConnected  = true;
         }else{
-            $scope.userAndPassPresent = true;
+
         }
     };
 

@@ -6,23 +6,32 @@
 </head>
 <body>
 
-<div layout="center center" layout-align="center center" ng-show="!userConnected">
-    <boxStyle>
+<div  layout-margin layout="center center" layout-align="center center" ng-show="!userConnected">
+    <boxStyle layout-margin>
 
         <form name="loginForm">
             <md-input-container>
                 <label>Login</label>
-                <input ng-model="login" ng-change="userOrPwdChange()">
+                <input ng-model="login" required name="login">
+                <div ng-messages="loginForm.login.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
             </md-input-container>
             <md-input-container >
                 <label>Password</label>
-                <input type="password" ng-model="pwd" ng-change="userOrPwdChange()">
+                <input type="password" required name="pwd" ng-model="pwd">
+                <div ng-messages="loginForm.pwd.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+                <div ng-messages="infoTry">
+                    <div ng-message="badPwdLogin">Bad password or login.</div>
+                </div>
             </md-input-container>
 
-            <md-button ng-click="connect()" ng-show="userAndPassPresent">Connect</md-button>
+            <md-button ng-click="connect()" ng-disabled="loginForm.login.$error.required || loginForm.pwd.$error.required">Connect</md-button>
 
         </form>
-        <md-button ng-click="go('/signin')">Sign-in</md-button>
+        <md-button  ng-click="go('/signin')">Sign-in</md-button>
     </boxStyle>
 </div>
 
