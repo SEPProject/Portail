@@ -31,12 +31,12 @@
 
                             <section >
 
-                            <md-button class="md-raised md-warn">
-                                DOWNLOAD
-                            </md-button>
+                                <md-button ng-click="openDl(applet.url)" class="md-raised md-warn">
+                                    <md-icon icon="bower_components/material-design-icons/action/svg/design/ic_get_app_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                </md-button>
 
-                            <md-button class="md-raised" ng-style="{background : 'green',color:'white'}">
-                                LAUNCH
+                            <md-button ng-click="goWindow('/PortailSep/app/appletPartials/chatSystem.html')" class="md-raised" ng-style="{background : 'green',color:'white'}">
+                                <md-icon icon="bower_components/material-design-icons/av/svg/design/ic_play_arrow_24px.svg" style="width: 24px; height: 24px;"></md-icon>
                             </md-button>
 
                                 <md-checkbox ng-disabled="true" ng-model="applet.done" ng-init="applet.done">
@@ -48,7 +48,7 @@
                                     </md-item>
                                 </md-checkbox>
 
-                        </section>
+                            </section>
 
                         <md-item layout-margin>
                             {{applet.duration}}

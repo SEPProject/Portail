@@ -22,6 +22,9 @@ mainApp.config(['$routeProvider',function($routeProvider){
     }).when('/profile',{
         templateUrl:'profile.html',
         controller:'profileCtrl'
+    }).when('/chatSystem',{
+        templateUrl:'chatSystem.html',
+        controller:'profileCtrl'
     });
 }]);
 
@@ -154,7 +157,7 @@ mainApp.controller('welcomeCtrl',function($scope){
     $scope.pseudo = user.pseudo;
 });
 
-mainApp.controller('appletCtrl',function($scope,$http){
+mainApp.controller('appletCtrl',function($scope,$http,$window){
     $scope.selectedTab = 0;
     $scope.isConnected = isConnected;
     $http.get('/PortailSep/app/domains.json').success(function(data){
@@ -169,6 +172,13 @@ mainApp.controller('appletCtrl',function($scope,$http){
         }
     });
 
+    $scope.openDl = function(url){
+        $window.open('applets/'+url+'.jar','Download');
+    }
+
+    $scope.goWindow = function(url){
+        $window.open(url);
+    }
 
 });
 
