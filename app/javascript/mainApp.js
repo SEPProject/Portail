@@ -1,34 +1,63 @@
 /**
  * Created by julescantegril on 10/02/2015.
  */
-var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies']);
+'use strict';
+
+var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies','network','resourceNetwork']);
 var isConnected = false;
 
 var user = {'pseudo':'','email':'','token':0};
 
-mainApp.config(['$routeProvider',function($routeProvider){
-    $routeProvider.when('/signin',{
-        templateUrl:'signin.html',
-        controller:'signinCtrl'
-    }).when('/login',{
-        templateUrl:'login.html',
-        controller:'loginCtrl'
-    }).when('/welcome',{
-            templateUrl:'welcome.html',
-            controller:'welcomeCtrl'
-        }).when('/applets',{
-        templateUrl:'applets.html',
-        controller:'appletCtrl'
-    }).when('/profile',{
-        templateUrl:'profile.html',
-        controller:'profileCtrl'
-    }).when('/chatSystem',{
-        templateUrl:'chatSystem.html',
-        controller:'profileCtrl'
-    });
+mainApp.constant("appConfig",{
+    path : {base : "http://leServeur.com:7070/"},
+    routes : {
+        baseUrl : 'partials/',
+        signin : {
+            url : '/signin',
+            ctrl : 'signinCtrl',
+            file : 'signin.html'
+        },
+        login : {
+            url : '/login',
+            ctrl : 'loginCtrl',
+            file : 'login.html'
+        },
+        welcome : {
+            url : '/welcome',
+            ctrl : 'welcomeCtrl',
+            file : 'welcome.html'
+        },
+        profile :{
+            url : '/profile',
+            ctrl : 'profileCtrl',
+            file : 'profile.html'
+        },
+        chatSystem : {
+            url : '/chatSystem',
+            ctrl : 'profileCtrl',
+            file : 'chatSystem.html'
+        },
+        applet : {
+            url : '/applets',
+            ctrl : 'appletCtrl',
+            file : 'applets.html'
+        }
+    }
+
+});
+
+mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
+
+    for(var i in appConfig.routes){
+        var route = appConfig.routes[i];
+        $routeProvider.when(route.url,{
+            templateUrl: appConfig.routes.baseUrl+route.file,
+            controller: route.ctrl
+        });
+    }
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore){
+mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction){
 
     $scope.toggleMenu = function(){
         if(isConnected){
@@ -57,12 +86,15 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore)
         $scope.userConnected = false;
         isConnected = false;
         $scope.go('/login');
+        var userAction = UserAction;
+        userAction.token = $cookieStore.get('token');
+        userAction.delete();
         $cookieStore.remove('token');
     };
 
 });
-var nbre = 0;
-mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies){
+
+mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserAction){
 
     $scope.go = function(path){
         $location.path(path);
@@ -76,29 +108,25 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies){
 
     $scope.connect = function(){
 
-       // $scope.infoTry = {'badPwdLogin':true};
-
-        /*$http.get('URL').success(function(data){
-            user.email = data.email;
-            user.pseudo = data.pseudo;
-            $cookies.token = data.token;
-            $scope.infoTry = {'badPwdLogin':false};//auth ok
-            $location.path('/welcome');
-            isConnected  = true;
-        });*/
-
-
-        $scope.infoTry = {'badPwdLogin':false};
-
-        $scope.userConnected = isConnected;
+        user.password = $scope.pwd;
         user.pseudo = $scope.login;
+        user.email = $scope.login;
 
-        if(!$scope.infoTry.goodPwdLogin){
+        var userAction = UserAction;
+        userAction.email = user.email;
+        userAction.password = user.password;
+        userAction.pseudo = user.pseudo;
+        userAction.save(function(data){
+            console.log(data);
+            $scope.userConnected =  true;
+           // $cookies.token = data.token;
             $location.path('/welcome');
             isConnected  = true;
-        }else{
-
-        }
+        },function(err){
+            console.log(err);
+            $scope.userConnected =  false;
+            isConnected  = false;
+        });
     };
 
 });
@@ -182,9 +210,10 @@ mainApp.controller('appletCtrl',function($scope,$http,$window){
 
 });
 
-mainApp.controller('profileCtrl',function($scope){
-    $scope.pseudo = user.pseudo;
-    $scope.email = user.email;
+mainApp.controller('profileCtrl',function($scope,User){
+    $scope.pseudoModify = user.pseudo;
+    $scope.emailModify = user.email;
+    $scope.passwordModify = '';
 
     $scope.pwdOk = false;
     $scope.emailOk = false;
@@ -192,8 +221,10 @@ mainApp.controller('profileCtrl',function($scope){
 
     $scope.pwdNotEqual = {};
 
+
+
     $scope.checkPwds = function(){
-        if($scope.pwd === $scope.pwd2){
+        if($scope.pwd === $scope.passwordModify){
             $scope.pwdOk = true;
             $scope.pwdNotEqual = {};
         }else{
@@ -215,7 +246,14 @@ mainApp.controller('profileCtrl',function($scope){
         }
     };
 
+
     $scope.changeInfo = function(){
+
+        var user = new User.get({id: 1});
+        user.email = $scope.emailModify;
+        user.pseudo =  $scope.pseudoModify;
+        user.password =  $scope.passwordModify;
+        user.$save();
 
     };
 

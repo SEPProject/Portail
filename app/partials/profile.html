@@ -19,7 +19,7 @@
 
             <md-input-container>
                 <label>Pseudo</label>
-                <input required name="pseudo" ng-model="pseudo" ng-change="checkPseudo()">
+                <input required name="pseudo" ng-model="pseudoModify" ng-change="checkPseudo()">
                 <div ng-messages="signinForm.pseudo.$error">
                     <div ng-message="required">This is required.</div>
                 </div>
@@ -27,7 +27,7 @@
 
             <md-input-container>
                 <label>e-mail</label>
-                <input type="email" required name="email" ng-model="email" ng-change="checkEmail()">
+                <input type="email" required name="email" ng-model="emailModify" ng-change="checkEmail()">
                 <div ng-messages="signinForm.email.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="email">This is not an email.</div>
@@ -49,13 +49,13 @@
 
             <md-input-container >
                 <label>Confirm password</label>
-                <input type="password"  name="pwd2" ng-model="pwd2" ng-change="checkPwds()">
+                <input type="password"  name="pwd2" ng-model="passwordModify" ng-change="checkPwds()">
                 <div ng-messages="pwdNotEqual">
                     <div ng-message="notEqual">Password not equals.</div>
                 </div>
             </md-input-container>
 
-            <md-button ng-click="changeInfo()">Change info</md-button>
+            <md-button ng-click="changeInfo()" ng-disabled="signinForm.pseudo.$error.required || signinForm.email.$error.required || signinForm.email.$error.email">Change info</md-button>
 
         </form>
     </boxStyle>
