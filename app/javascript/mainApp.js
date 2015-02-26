@@ -131,7 +131,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
 });
 
-mainApp.controller('signinCtrl',function($scope){
+mainApp.controller('signinCtrl',function($scope,User){
 
     $scope.email = '';
     $scope.pwd = '';
@@ -167,7 +167,17 @@ mainApp.controller('signinCtrl',function($scope){
     };
 
     $scope.singin = function(){
-        //jsute sign in if every thing is OK
+        var userAction = new User;
+        userAction.email = $scope.email;
+        userAction.pwd = $scope.pwd;
+        userAction.pseudo = $scope.pseudo;
+        userAction.$save(function(data){
+            user.pseudo =  $scope.pseudo;
+            user.email =  $scope.email;
+            user.token =  data.token;
+        },function(err){
+
+        });
     };
 
     $scope.checkPseudo = function(){
