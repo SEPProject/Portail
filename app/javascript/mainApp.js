@@ -9,7 +9,7 @@ var isConnected = false;
 var user = {'pseudo':'','email':'','token':0};
 
 mainApp.constant("appConfig",{
-    path : {base : "http://leServeur.com:7070/"},
+    path : {base : "http://localhost:3000"},
     routes : {
         baseUrl : 'partials/',
         signin : {
@@ -185,9 +185,10 @@ mainApp.controller('welcomeCtrl',function($scope){
     $scope.pseudo = user.pseudo;
 });
 
-mainApp.controller('appletCtrl',function($scope,$http,$window){
+mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){
     $scope.selectedTab = 0;
     $scope.isConnected = isConnected;
+
     $http.get('/PortailSep/app/domains.json').success(function(data){
         $scope.domains = data;
     });
@@ -198,6 +199,23 @@ mainApp.controller('appletCtrl',function($scope,$http,$window){
         {
             data[i].isCollapsed = true;
         }
+    });
+
+    var applets = new Applet;
+    applets.token = $cookieStore.get('token');
+    applets.all = true;
+    applets.$save(function(data){
+        $scope.applets = data;
+    },function(err){
+
+    });
+
+    var domains = new Domain;
+    domains.token = $cookieStore.get('token');
+    domains.$save(function(data){
+        $scope.domains = data;
+    },function(err){
+
     });
 
     $scope.openDl = function(url){

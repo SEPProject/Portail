@@ -10,14 +10,14 @@ network.factory('Applet', ["appConfig",'resourceNetworkFac',function(appConfig,$
 }]);
 
 network.factory('User', ["appConfig",'resourceNetworkFac',function(appConfig,$resource) {
-    return $resource(appConfig.path.base+"/user",{id: "@id"});
+    return $resource(appConfig.path.base+"/user/:id",{id: "@id"});
 }]);
 
 network.factory('UserAction', ["appConfig",'resourceNetworkFac',function(appConfig,$resource) {
-    return $resource("/PortailSep/app/connexionOk.json",{id: "@id"});
+    return $resource(appConfig.path.base+"/user/action/:id",{id: "@id"});
 }]);
 
-//PortailSep/app/
+///PortailSep/app/connexionOk.json
 //appConfig.path.base+"/user/action/:id"
 
 network.factory('Domain', ["appConfig",'resourceNetworkFac',function(appConfig,$resource) {
