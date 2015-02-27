@@ -55,8 +55,12 @@
                 Deconnexion
             </md-button>
 
-            <md-button ng-show="isAdmin" ng-click="go('/adminUser')">
+            <md-button ng-show="!isAdmin" ng-click="go('/adminUser')">
                 Admin User
+            </md-button>
+
+            <md-button ng-show="!isAdmin" ng-click="go('/adminApplet')">
+                Admin Applet
             </md-button>
 
         </section>

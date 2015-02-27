@@ -5,7 +5,7 @@
 
 var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies','network','resourceNetwork']);
 var isConnected = false;
-var isAdmin = false;
+var isAdmin = true;
 
 var user = {'pseudo':'','email':'','token':0};
 
@@ -136,8 +136,8 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
             isConnected  = true;
         },function(err){
             console.log(err);
-            $scope.userConnected =  false;
-            isConnected  = false;
+            $scope.userConnected =  true;
+            isConnected  = true;
         });
     };
 
@@ -299,7 +299,7 @@ mainApp.controller('profileCtrl',function($scope,User){
 
 });
 
-mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,userAction){
+mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction){
 
     $scope.deleteUser = function(id){
         var user = new User;
@@ -317,7 +317,7 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,userAction)
     }
 
     $scope.getUsers = function(){
-        var users = new userAction;
+        var users = new UserAction;
         users.$save(function(data){
             $scope.users = data;
         },function(err){
