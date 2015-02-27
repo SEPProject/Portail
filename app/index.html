@@ -54,6 +54,11 @@
             <md-button ng-click="deconnect()">
                 Deconnexion
             </md-button>
+
+            <md-button ng-show="isAdmin" ng-click="go('/adminUser')">
+                Admin User
+            </md-button>
+
         </section>
 
 </md-sidenav>

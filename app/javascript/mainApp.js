@@ -5,8 +5,10 @@
 
 var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies','network','resourceNetwork']);
 var isConnected = false;
+var isAdmin = false;
 
 var user = {'pseudo':'','email':'','token':0};
+
 
 mainApp.constant("appConfig",{
     path : {base : "http://localhost:3000"},
@@ -41,6 +43,16 @@ mainApp.constant("appConfig",{
             url : '/applets',
             ctrl : 'appletCtrl',
             file : 'applets.html'
+        },
+        adminUser : {
+            url : '/adminUser',
+            ctrl : 'adminUserCtrl',
+            file : 'adminuser.html'
+        },
+        adminApplet : {
+            url : '/adminApplets',
+            ctrl : 'adminAppletsCtrl',
+            file : 'adminapplets.html'
         }
     }
 
@@ -284,5 +296,84 @@ mainApp.controller('profileCtrl',function($scope,User){
         user.$save();
 
     };
+
+});
+
+mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,userAction){
+
+    $scope.deleteUser = function(id){
+        var user = new User;
+        user.token = $cookieStore.get('token');
+        user.id = id;
+        user.delete();
+    };
+
+    $scope.modifyUser = function(user){
+        var userModify = new User({id: 1});
+        userModify.pseudo = user.pseudo;
+        userModify.email = user.email;
+        userModify.password = user.password;
+        userModify.$save();
+    }
+
+    $scope.getUsers = function(){
+        var users = new userAction;
+        users.$save(function(data){
+            $scope.users = data;
+        },function(err){
+
+        });
+    }
+
+});
+
+mainApp.controller('adminAppletCtrl',function($scope,Applet,Domain,$cookieStore){
+
+    $scope.getApplets = function(){
+     var applet = new Applet;
+        applet.$save(function(data){
+            $scope.applets = data;
+        },function(err){
+
+        });
+    };
+
+    $scope.getDomains = function(){
+        var domain = new Domain;
+        domain.$save(function(data){
+            $scope.domains = data;
+        },function(err){
+
+        });
+    };
+
+    $scope.modifyApplet = function(appletModified){
+        var applet = new Applet({id :1});
+        applet.token = appletModified.token;
+        applet.name = appletModified.name;
+        applet.id = appletModified.id;
+        applet.duration = appletModified.duration;
+        applet.domain = appletModified.domain;
+        applet.url = appletModified.url;
+        applet.$save();
+    }
+
+    $scope.createApplet = function(appletModified){
+        var applet = new Applet();
+        applet.token = appletModified.token;
+        applet.name = appletModified.name;
+        applet.id = appletModified.id;
+        applet.duration = appletModified.duration;
+        applet.domain = appletModified.domain;
+        applet.url = appletModified.url;
+        applet.$save();
+    }
+
+    $scope.deleteApplet = function(id){
+        var applet = new Applet;
+        applet.token = $cookieStore.get('token');
+        applet.id = id;
+        applet.delete();
+    }
 
 });
