@@ -402,28 +402,57 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
         applet.$save();
     }
 
-    $scope.createApplet = function(appletModified){
-        var applet = new Applet();
-        applet.token = appletModified.token;
-        applet.name = appletModified.name;
-        applet.id = appletModified.id;
-        applet.duration = appletModified.duration;
-        applet.domain = appletModified.domain;
-        applet.url = appletModified.url;
-        applet.$save();
-    }
-
     $scope.deleteApplet = function(id){
         var applet = new Applet;
         applet.token = $cookieStore.get('token');
         applet.id = id;
-        applet.delete();
+
+        var nouveauxApplets = [{}];
+        for(var i in $scope.applets){
+            if(! ($scope.applets[i].id == id.id)){
+                console.log("if " +$scope.applets[i].id);
+                nouveauxApplets.push($scope.applets[i]);
+            }else{
+                console.log("else "+$scope.applets[i].id);
+                delete $scope.applets[i];
+            }
+        }
+        $scope.applets = nouveauxApplets;
+        console.log(nouveauxApplets);
+        console.log(id);
+
+        /*applet.delete(function(data){
+            var nouveauxApplets = [{}];
+            for(var i in $scope.applets){
+                if(! ($scope.applets[i].id == id)){
+                    nouveauxApplets.push($scope.applets[i]);
+                }else{
+                    delete $scope.applets[i];
+                }
+            }
+        },function(err){
+        });*/
     }
 
     $scope.newApplet = function(domain){
-        $scope.applets.push({'isCollapsed':true,'domain':domain,'description':'desciption','name':'name','duration':'duration'});
+        var nouvelleApplet = {'isCollapsed':true,'domain':domain,'description':'desciption','name':'name','duration':'duration'};
+
+        var applet = new Applet();
+        applet.token = nouvelleApplet.token;
+        applet.name = nouvelleApplet.name;
+        applet.duration = nouvelleApplet.duration;
+        applet.domain = nouvelleApplet.domain;
+        applet.url = nouvelleApplet.url;
+        applet.$save(function(data){
+            $scope.applets.push(nouvelleApplet);
+        },function(err){
+
+        });
+
         console.log($scope.applets);
     }
+
+
 
 
 });
