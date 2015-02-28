@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<tabStyle layout="center center" layout-align="center center">
+    <md-tabs md-selected="selectedTab" layout-align="center center" >
+        <md-tab ng-repeat="tab in domains" ng-disabled="tab.disabled" label = "{{tab.name}}">
+
+            <md-item layout-margin>
+                <div ng-bind="tab.description">
+
+                </div>
+            </md-item>
+
+
+            <div ng-repeat="applet in applets" ng-if="applet.domain === tab.name">
+
+                <md-card >
+                    <md-toolbar layout="center center" layout-align="center center" ng-click="applet.isCollapsed = !applet.isCollapsed" >
+                        <md-input-container>
+                            <md-input ng-value="applet.name" style="text-align:center;" >
+                        </md-input-container>
+                    </md-toolbar>
+
+                    <md-item ng-hide="applet.isCollapsed" layout-margin>
+                        <h3>
+                            <md-input-container>
+                                <md-input ng-value="applet.description" style="text-align:center;" >
+                            </md-input-container>
+                        </h3>
+
+                            <section >
+
+                                <md-button ng-click="openDl(applet.url)" class="md-raised md-warn">
+                                    <md-icon icon="bower_components/material-design-icons/action/svg/design/ic_get_app_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                </md-button>
+
+                            <md-button ng-click="goWindow('/PortailSep/app/appletPartials/chatSystem.html')" class="md-raised" ng-style="{background : 'green',color:'white'}">
+                                <md-icon icon="bower_components/material-design-icons/av/svg/design/ic_play_arrow_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                            </md-button>
+
+                            </section>
+
+                        <md-item layout-margin>
+                            <md-input-container>
+                                <md-input ng-value="applet.url" style="text-align:center;" >
+                            </md-input-container>
+                        </md-item>
+
+                        <md-item layout-margin>
+                            <md-input-container>
+                                <md-input ng-value="applet.duration" style="text-align:center;" >
+                            </md-input-container>
+                        </md-item>
+                        <md-button ng-click="modifyApplet({'url':applet.url,'duration':applet.duration,'description':applet.description,'name':applet.name,'domain':tab.name,'id':applet.id})">Modify</md-button>
+                    </md-item>
+                </md-card>
+            </div>
+
+        </md-tab>
+    </md-tabs>
+</tabStyle>
+</body>
+</html>

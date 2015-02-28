@@ -358,7 +358,20 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
 
 });
 
-mainApp.controller('adminAppletCtrl',function($scope,Applet,Domain,$cookieStore){
+mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore,$http){
+
+
+    $http.get('/PortailSep/app/domains.json').success(function(data){
+        $scope.domains = data;
+    });
+
+    $http.get('/PortailSep/app/applets.json').success(function(data){
+        $scope.applets = data;
+        for(var i in data)
+        {
+            data[i].isCollapsed = true;
+        }
+    });
 
     $scope.getApplets = function(){
      var applet = new Applet;
