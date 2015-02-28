@@ -309,6 +309,7 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
     };
 
     $scope.modifyUser = function(user){
+        //console.log(user.pseudo+" "+user.email+" "+user.password);
         var userModify = new User({id: 1});
         userModify.pseudo = user.pseudo;
         userModify.email = user.email;

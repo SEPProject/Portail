@@ -16,12 +16,12 @@
     <div ng-show="user.expand" layout="center center" layout-align="center center">
         <boxStyle>
 
-            <form name="signinForm">
+            <form name="modifyForm">
 
                 <md-input-container>
                     <label>Pseudo</label>
                     <input required name="pseudo" ng-model="user.pseudo" ng-change="checkPseudo()">
-                    <div ng-messages="signinForm.pseudo.$error">
+                    <div ng-messages="modifyForm.pseudo.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
                 </md-input-container>
@@ -29,7 +29,7 @@
                 <md-input-container>
                     <label>e-mail</label>
                     <input type="email" required name="email" ng-model="user.email" ng-change="checkEmail()">
-                    <div ng-messages="signinForm.email.$error">
+                    <div ng-messages="modifyForm.email.$error">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="email">This is not an email.</div>
                     </div>
@@ -37,9 +37,9 @@
 
                 <md-input-container >
                     <label>Password</label>
-                    <input type="password" required name="pwd"  ng-model="user.pwd" ng-change="checkPwds()">
+                    <input type="password" name="pwd"  ng-model="user.pwd">
                 </md-input-container>
-                <md-button ng-click="modify()" ng-show="emailOk && pseudoOk">Modify</md-button>
+                <md-button ng-click="modifyUser({'pseudo':user.pseudo,'email':user.email,'password':user.password})" ng-show="!(modifyForm.email.$error.required || modifyForm.email.$error.email || modifyForm.pseudo.$error.required)">Modify</md-button>
 
             </form>
         </boxStyle>
