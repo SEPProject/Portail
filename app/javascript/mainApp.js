@@ -299,7 +299,7 @@ mainApp.controller('profileCtrl',function($scope,User){
 
 });
 
-mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction){
+mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,$http){
 
     $scope.deleteUser = function(id){
         var user = new User;
@@ -314,16 +314,46 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction)
         userModify.email = user.email;
         userModify.password = user.password;
         userModify.$save();
-    }
+    };
 
     $scope.getUsers = function(){
         var users = new UserAction;
         users.$save(function(data){
             $scope.users = data;
+            for(i in users){
+                users[i].expand = false;
+            }
         },function(err){
 
         });
-    }
+    };
+
+
+    $scope.emailOk = true;
+    $scope.pseudoOk = true;
+
+    $scope.checkPseudo = function(){
+        //ask the server is the email is taken or not
+        if($scope.signinForm.pseudo.$error.required){
+            $scope.pseudoOk = false;
+        }else{
+            $scope.pseudoOk = true;
+        }
+    };
+
+    $scope.checkEmail = function(){
+        //ask the server is the email is taken or not
+        if($scope.signinForm.email.$error.email || $scope.signinForm.email.$error.required){
+            $scope.emailOk = false;
+        }else{
+            $scope.emailOk = true;
+        }
+    };
+
+    $http.get('/PortailSep/app/users.json').success(function(data){
+        $scope.users = data;
+    });
+
 
 });
 
@@ -375,5 +405,7 @@ mainApp.controller('adminAppletCtrl',function($scope,Applet,Domain,$cookieStore)
         applet.id = id;
         applet.delete();
     }
+
+
 
 });
