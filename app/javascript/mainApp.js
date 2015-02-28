@@ -407,31 +407,17 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
         applet.token = $cookieStore.get('token');
         applet.id = id;
 
-        var nouveauxApplets = [{}];
-        for(var i in $scope.applets){
-            if(! ($scope.applets[i].id == id.id)){
-                console.log("if " +$scope.applets[i].id);
-                nouveauxApplets.push($scope.applets[i]);
-            }else{
-                console.log("else "+$scope.applets[i].id);
-                delete $scope.applets[i];
-            }
-        }
-        $scope.applets = nouveauxApplets;
-        console.log(nouveauxApplets);
-        console.log(id);
 
-        /*applet.delete(function(data){
+        applet.delete(function(data){
             var nouveauxApplets = [{}];
             for(var i in $scope.applets){
-                if(! ($scope.applets[i].id == id)){
+                if(! ($scope.applets[i].id == id.id)){
                     nouveauxApplets.push($scope.applets[i]);
-                }else{
-                    delete $scope.applets[i];
                 }
             }
+            $scope.applets = nouveauxApplets;
         },function(err){
-        });*/
+        });
     }
 
     $scope.newApplet = function(domain){
