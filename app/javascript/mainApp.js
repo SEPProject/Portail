@@ -420,6 +420,10 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
         applet.delete();
     }
 
+    $scope.newApplet = function(domain){
+        $scope.applets.push({'isCollapsed':true,'domain':domain,'description':'desciption','name':'name','duration':'duration'});
+        console.log($scope.applets);
+    }
 
 
 });

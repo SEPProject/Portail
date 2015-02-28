@@ -12,8 +12,8 @@
 
             <md-item layout-margin>
                 <div ng-bind="tab.description">
-
                 </div>
+                <md-button ng-click="newApplet(tab.name)">Create</md-button>
             </md-item>
 
 
@@ -22,6 +22,7 @@
                 <md-card >
                     <md-toolbar layout="center center" layout-align="center center" ng-click="applet.isCollapsed = !applet.isCollapsed" >
                         <md-input-container>
+                            <label>Name</label>
                             <md-input ng-value="applet.name" style="text-align:center;" >
                         </md-input-container>
                     </md-toolbar>
@@ -29,6 +30,7 @@
                     <md-item ng-hide="applet.isCollapsed" layout-margin>
                         <h3>
                             <md-input-container>
+                                <label>Description</label>
                                 <md-input ng-value="applet.description" style="text-align:center;" >
                             </md-input-container>
                         </h3>
@@ -47,16 +49,18 @@
 
                         <md-item layout-margin>
                             <md-input-container>
+                                <label>Url</label>
                                 <md-input ng-value="applet.url" style="text-align:center;" >
                             </md-input-container>
                         </md-item>
 
                         <md-item layout-margin>
                             <md-input-container>
+                                <label>Duration</label>
                                 <md-input ng-value="applet.duration" style="text-align:center;" >
                             </md-input-container>
                         </md-item>
-                        <md-button ng-click="modifyApplet({'url':applet.url,'duration':applet.duration,'description':applet.description,'name':applet.name,'domain':tab.name,'id':applet.id})">Modify</md-button>
+                        <md-button ng-click="modifyApplet({'url':applet.url,'duration':applet.duration,'description':applet.description,'name':applet.name,'domain':tab.name,'id':applet.id})">Save</md-button>
                     </md-item>
                 </md-card>
             </div>
