@@ -266,7 +266,14 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
     $scope.pwdNotEqual = {};
 
+    var userGet ={};
+    userGet.id = user.id;
+    //userGet.token = user.token;
+    User.get(userGet,function(data){
 
+    },function(err){
+
+    });
 
     $scope.checkPwds = function(){
         if($scope.pwd === $scope.passwordModify){

@@ -20,10 +20,10 @@ resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resourc
                 return current.$create(success, error);
             }
             else {
+
                 return current.$update(success, error);
             }
         };
-
    return resource;
     };
  }]);
