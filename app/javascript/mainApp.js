@@ -345,10 +345,10 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
 mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,$http,$mdDialog){
 
-    $scope.showModifResult = function(ev,result) {
+    $scope.showModifResult = function(ev,result,title) {
         $mdDialog.show(
             $mdDialog.alert()
-                .title('Delete result')
+                .title(title)
                 .content(result)
                 .ariaLabel('Password notification')
                 .ok('Ok')
@@ -362,9 +362,9 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
         //userDel.id = id;
         userDel.id = "123";
         userDel.$remove(function(data){
-            $scope.showModifResult(ev,'User deleted');
+            $scope.showModifResult(ev,'User deleted','Delete result');
         },function(err){
-            $scope.showModifResult(ev,'User not deleted');
+            $scope.showModifResult(ev,'User not deleted','Delete result');
         });
     };
 
@@ -376,9 +376,9 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
         userModify.email = user.email;
         userModify.password = user.password;
         userModify.$save(function(data){
-            $scope.showModifResult(ev,'User modified');
+            $scope.showModifResult(ev,'User modified','Modification result');
         },function(err){
-            $scope.showModifResult(ev,'User modified');
+            $scope.showModifResult(ev,'User modified','Modification result');
         });
     };
 
@@ -422,7 +422,18 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
 
 });
 
-mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore,$http){
+mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore,$http,$mdDialog){
+
+    $scope.showModifResult = function(ev,result,title) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title(title)
+                .content(result)
+                .ariaLabel('Password notification')
+                .ok('Ok')
+                .targetEvent(ev)
+        );
+    };
 
 
     $http.get('/PortailSep/app/domains.json').success(function(data){
@@ -456,14 +467,19 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
     };
 
     $scope.modifyApplet = function(appletModified){
-        var applet = new Applet({id :1});
+        var applet = new Applet;
+        applet.idM = 1;
         applet.token = appletModified.token;
         applet.name = appletModified.name;
         applet.id = appletModified.id;
         applet.duration = appletModified.duration;
         applet.domain = appletModified.domain;
         applet.url = appletModified.url;
-        applet.$save();
+        applet.$save(function(data){
+            $scope.showModifResult(ev,'Applet modified','Modification result');
+        },function(err){
+            $scope.showModifResult(ev,'Applet not modified','Modification result');
+        });
     }
 
     $scope.deleteApplet = function(id){
@@ -471,16 +487,17 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
         applet.token = $cookieStore.get('token');
         applet.id = id;
 
-
-        applet.delete(function(data){
+        applet.$remove(function(data){
             var nouveauxApplets = [{}];
             for(var i in $scope.applets){
                 if(! ($scope.applets[i].id == id.id)){
                     nouveauxApplets.push($scope.applets[i]);
                 }
             }
+            $scope.showModifResult(ev,'Applet deleted','Delete result');
             $scope.applets = nouveauxApplets;
         },function(err){
+            $scope.showModifResult(ev,'Applet not deleted','Delete result');
         });
     }
 
