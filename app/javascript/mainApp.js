@@ -240,18 +240,18 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
         }
     });
 
-    var applets = new Applet;
+    var applets = {};
     applets.token = $cookieStore.get('token');
     applets.all = true;
-    applets.$save(function(data){
+    Applet.get(applets,function(data){
         $scope.applets = data;
     },function(err){
 
     });
 
-    var domains = new Domain;
+    var domains = {};
     domains.token = $cookieStore.get('token');
-    domains.$save(function(data){
+    Domain.get(domains,function(data){
         $scope.domains = data;
     },function(err){
 
