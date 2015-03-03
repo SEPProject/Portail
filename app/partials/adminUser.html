@@ -39,7 +39,8 @@
                     <label>Password</label>
                     <input type="password" name="pwd"  ng-model="user.pwd">
                 </md-input-container>
-                <md-button ng-click="modifyUser({'pseudo':user.pseudo,'email':user.email,'password':user.password})" ng-show="!(modifyForm.email.$error.required || modifyForm.email.$error.email || modifyForm.pseudo.$error.required)">Modify</md-button>
+                <md-button ng-click="modifyUser({'pseudo':user.pseudo,'email':user.email,'password':user.password},$event)" ng-disabled="!(modifyForm.email.$error.required || modifyForm.email.$error.email || modifyForm.pseudo.$error.required)">Modify</md-button>
+                <md-button ng-click="deleteUser({'pseudo':user.pseudo,'email':user.email,'password':user.password},$event)">Delete</md-button>
 
             </form>
         </boxStyle>

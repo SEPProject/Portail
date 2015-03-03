@@ -343,37 +343,56 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
 });
 
-mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,$http){
+mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,$http,$mdDialog){
 
-    $scope.deleteUser = function(id){
-        var user = new User;
-        user.token = $cookieStore.get('token');
-        user.id = id;
-        user.delete();
+    $scope.showModifResult = function(ev,result) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title('Delete result')
+                .content(result)
+                .ariaLabel('Password notification')
+                .ok('Ok')
+                .targetEvent(ev)
+        );
     };
 
-    $scope.modifyUser = function(user){
+    $scope.deleteUser = function(id,ev){
+        var userDel = new User;
+        //userDel.token = $cookieStore.get('token');
+        //userDel.id = id;
+        userDel.id = "123";
+        userDel.$remove(function(data){
+            $scope.showModifResult(ev,'User deleted');
+        },function(err){
+            $scope.showModifResult(ev,'User not deleted');
+        });
+    };
+
+    $scope.modifyUser = function(user,ev){
         //console.log(user.pseudo+" "+user.email+" "+user.password);
         var userModify = new User;
         userModify.idM = 1;
         userModify.pseudo = user.pseudo;
         userModify.email = user.email;
         userModify.password = user.password;
-        userModify.$save();
-    };
-
-    $scope.getUsers = function(){
-        var users = new UserAction;
-        users.$save(function(data){
-            $scope.users = data;
-            for(i in users){
-                users[i].expand = false;
-            }
+        userModify.$save(function(data){
+            $scope.showModifResult(ev,'User modified');
         },function(err){
-
+            $scope.showModifResult(ev,'User modified');
         });
     };
 
+    /*var users = new UserAction;
+    users.id = user.id;
+    users.token = user.token;
+    UserAction.get(users,function(data){
+        $scope.users = data;
+        for(var i in users){
+            users[i].expand = false;
+        }
+    },function(err){
+
+    });*/
 
     $scope.emailOk = true;
     $scope.pseudoOk = true;
