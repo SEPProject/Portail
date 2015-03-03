@@ -16,13 +16,10 @@ resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resourc
 
             var current = angular.copy(this);
 
-            console.log(console.log(JSON.parse(JSON.stringify(current))));
             if ( !current.idM ) {
-                console.log("create");
                 return current.$create(success, error);
             }
             else {
-                console.log("update");
                 return current.$update(success, error);
             }
         };

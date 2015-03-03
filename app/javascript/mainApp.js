@@ -124,11 +124,11 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
         user.pseudo = $scope.login;
         user.email = $scope.login;
 
-        var userAction = UserAction;
+        var userAction = new UserAction;
         userAction.email = user.email;
         userAction.password = user.password;
         userAction.pseudo = user.pseudo;
-        userAction.save(function(data){
+        userAction.$save(function(data){
             console.log(data);
             $scope.userConnected =  true;
            // $cookies.token = data.token;
@@ -143,7 +143,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
 });
 
-mainApp.controller('signinCtrl',function($scope,User){
+mainApp.controller('signinCtrl',function($scope,User,$location){
 
     $scope.email = '';
     $scope.pwd = '';
@@ -190,7 +190,7 @@ mainApp.controller('signinCtrl',function($scope,User){
             user.email =  $scope.email;
             user.token =  data.token;
             user.id = data.id;
-            go('/welcome');
+            $location.path('/welcome');
         },function(err){
             console.log("err");
             console.log(err);
