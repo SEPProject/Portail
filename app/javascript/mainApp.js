@@ -98,10 +98,22 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
         $scope.userConnected = false;
         isConnected = false;
         $scope.go('/login');
-        var userAction = UserAction;
-        userAction.token = $cookieStore.get('token');
-        userAction.delete();
-        $cookieStore.remove('token');
+        var userAction = {};
+        //userAction.token = $cookieStore.get('token');
+        userAction.id = user.id;
+        UserAction.delete(userAction,function(data){
+            $scope.login = '';
+            $scope.pwd = '';
+            user.email = '';
+            user.login = '';
+            user.token = '';
+            $scope.userConnected = false;
+            isConnected = false;
+            $scope.go('/login');
+        },function(err){
+            //what do we do in that case ?
+        });
+       // $cookieStore.remove('token');
     };
 
 });
