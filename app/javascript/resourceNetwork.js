@@ -10,13 +10,20 @@ resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resourc
         };
 
         methods = angular.extend( defaults, methods );
+
         var resource = $resource( url, params, methods );
-        resource.prototype.$save = function() {
-            if ( !this.id ) {
-                return this.$create();
+        resource.prototype.$save = function(success, error) {
+
+            var current = angular.copy(this);
+
+            console.log(console.log(JSON.parse(JSON.stringify(current))));
+            if ( !current.idM ) {
+                console.log("create");
+                return current.$create(success, error);
             }
             else {
-                return this.$update();
+                console.log("update");
+                return current.$update(success, error);
             }
         };
 

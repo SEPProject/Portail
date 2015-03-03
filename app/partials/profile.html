@@ -55,7 +55,7 @@
                 </div>
             </md-input-container>
 
-            <md-button ng-click="changeInfo()" ng-disabled="signinForm.pseudo.$error.required || signinForm.email.$error.required || signinForm.email.$error.email">Change info</md-button>
+            <md-button ng-click="changeInfo($event)" ng-disabled="signinForm.pseudo.$error.required || signinForm.email.$error.required || signinForm.email.$error.email">Change info</md-button>
 
         </form>
     </boxStyle>

@@ -7,7 +7,7 @@ var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngC
 var isConnected = false;
 var isAdmin = true;
 
-var user = {'pseudo':'','email':'','token':0};
+var user = {'id':'','pseudo':'','email':'','token':0};
 
 
 mainApp.constant("appConfig",{
@@ -178,17 +178,22 @@ mainApp.controller('signinCtrl',function($scope,User){
         }
     };
 
-    $scope.singin = function(){
+    $scope.signin = function(){
         var userAction = new User;
         userAction.email = $scope.email;
         userAction.pwd = $scope.pwd;
         userAction.pseudo = $scope.pseudo;
         userAction.$save(function(data){
+            console.log("data");
+            console.log(data);
             user.pseudo =  $scope.pseudo;
             user.email =  $scope.email;
             user.token =  data.token;
+            user.id = data.id;
+            go('/welcome');
         },function(err){
-
+            console.log("err");
+            console.log(err);
         });
     };
 
@@ -250,7 +255,7 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
 
 });
 
-mainApp.controller('profileCtrl',function($scope,User){
+mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
     $scope.pseudoModify = user.pseudo;
     $scope.emailModify = user.email;
     $scope.passwordModify = '';
@@ -287,14 +292,34 @@ mainApp.controller('profileCtrl',function($scope,User){
     };
 
 
-    $scope.changeInfo = function(){
+    $scope.changeInfo = function(ev){
 
-        var user = new User.get({id: 1});
-        user.email = $scope.emailModify;
-        user.pseudo =  $scope.pseudoModify;
-        user.password =  $scope.passwordModify;
-        user.$save();
+        var userChanged = new User;
+        userChanged.idM = 1;
+        userChanged.email = $scope.emailModify;
+        userChanged.pseudo =  $scope.pseudoModify;
+        userChanged.password =  $scope.passwordModify;
+        userChanged.id = user.id;
+        //userChanged.token = user.token;
+        userChanged.$save(function(data){
+            user.email =  $scope.emailModify;
+            user.pseudo = $scope.pseudo;
+            $scope.showModifResult(ev,'Success to change your informations');
+        },function(err){
+            $scope.showModifResult(ev,'Fail to change your informations');
+        });
 
+    };
+
+    $scope.showModifResult = function(ev,result) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title('Modification result')
+                .content(result)
+                .ariaLabel('Password notification')
+                .ok('Continue')
+                .targetEvent(ev)
+        );
     };
 
 });
@@ -310,7 +335,8 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
 
     $scope.modifyUser = function(user){
         //console.log(user.pseudo+" "+user.email+" "+user.password);
-        var userModify = new User({id: 1});
+        var userModify = new User;
+        userModify.idM = 1;
         userModify.pseudo = user.pseudo;
         userModify.email = user.email;
         userModify.password = user.password;
