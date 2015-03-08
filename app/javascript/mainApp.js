@@ -150,6 +150,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
             console.log(err);
             $scope.userConnected =  true;
             isConnected  = true;
+            $location.path('/welcome');
         });
     };
 
@@ -228,11 +229,11 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     $scope.selectedTab = 0;
     $scope.isConnected = isConnected;
 
-    $http.get('/PortailSep/app/domains.json').success(function(data){
+    $http.get('./domains.json').success(function(data){
         $scope.domains = data;
     });
 
-    $http.get('/PortailSep/app/applets.json').success(function(data){
+    $http.get('./applets.json').success(function(data){
         $scope.applets = data;
         for(var i in data)
         {
@@ -415,7 +416,7 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
         }
     };
 
-    $http.get('/PortailSep/app/users.json').success(function(data){
+    $http.get('./users.json').success(function(data){
         $scope.users = data;
     });
 
@@ -436,11 +437,11 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
     };
 
 
-    $http.get('/PortailSep/app/domains.json').success(function(data){
+    $http.get('./domains.json').success(function(data){
         $scope.domains = data;
     });
 
-    $http.get('/PortailSep/app/applets.json').success(function(data){
+    $http.get('./applets.json').success(function(data){
         $scope.applets = data;
         for(var i in data)
         {

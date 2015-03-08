@@ -1,14 +1,14 @@
 [
   {"email":"toto@gmail.com",
-  "pseudo":"tato",
+  "pseudo":"Tatoo",
   "password":"ASDFGVXVF=",
-  "id":"0239"},
-  {"email":"toto@gmail.com",
-    "pseudo":"boubs",
+  "id":"1"},
+  {"email":"caro_du_31@gmail.com",
+    "pseudo":"Karo",
     "password":"ASDFGVXVF=",
-    "id":"0239"},
-  {"email":"toto@gmail.com",
-    "pseudo":"bouby",
+    "id":"2"},
+  {"email":"geny@gmail.com",
+    "pseudo":"GenyTeteDePie",
     "password":"ASDFGVXVF=",
-    "id":"0239"}
+    "id":"3"}
 ]
