@@ -75,10 +75,11 @@
     </md-button>
 </md-toolbar>
 
-<md-button ng-click="changeLangage()" layout="right right" layout-align="right right">
-    <md-icon icon="./bower_components/material-design-icons/content/svg/design/ic_flag_24px.svg"></md-icon>
-    {{jsonLang.lang}}
-</md-button>
+    <md-button ng-click="changeLangage()" layout="center center" layout-align="center center" style="float: right;"  >
+        <md-icon icon="./bower_components/material-design-icons/content/svg/design/ic_flag_24px.svg"></md-icon>
+        {{jsonLang.lang}}
+    </md-button>
+
 <div ng-view></div>
 
 </body>
