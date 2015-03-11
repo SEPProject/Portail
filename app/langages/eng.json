@@ -1,3 +1,19 @@
 {
-  "toto":"foo"
+  "lang":"eng",
+  "login":"Login",
+  "pwd":"Password",
+  "email":"e-mail",
+  "required":"This is required",
+  "notEmail":"This is not an e-mail",
+  "pwdConfirm":"Confirm password",
+  "signin":"Sing-in",
+  "connect":"Connexion",
+  "deconnect":"Deconnexion",
+  "profile":"Profile",
+  "applets":"Applets",
+  "adminUser":"Users admin",
+  "adminApplet":"Applets admin",
+  "badConnexion":"Bad login or password",
+  "passwordNotEqual":"Password not equals"
+
 }

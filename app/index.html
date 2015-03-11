@@ -44,23 +44,23 @@
         <section layout="column" ng-show="userConnected"  >
 
             <md-button ng-click="go('/profile')">
-                Profile
+                {{jsonLang.profile}}
             </md-button>
 
             <md-button ng-click="go('/applets')">
-                Applets
+                {{jsonLang.applets}}
             </md-button>
 
             <md-button ng-click="deconnect()">
-                Deconnexion
+                {{jsonLang.deconnect}}
             </md-button>
 
             <md-button ng-show="!isAdmin" ng-click="go('/adminUser')">
-                Admin User
+                {{jsonLang.adminUser}}
             </md-button>
 
             <md-button ng-show="!isAdmin" ng-click="go('/adminApplets')">
-                Admin Applet
+                {{jsonLang.adminApplet}}
             </md-button>
 
         </section>
@@ -75,6 +75,10 @@
     </md-button>
 </md-toolbar>
 
+<md-button ng-click="changeLangage()" layout="right right" layout-align="right right">
+    <md-icon icon="./bower_components/material-design-icons/content/svg/design/ic_flag_24px.svg"></md-icon>
+    {{jsonLang.lang}}
+</md-button>
 <div ng-view></div>
 
 </body>

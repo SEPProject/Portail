@@ -116,23 +116,24 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
        // $cookieStore.remove('token');
     };
 
-    $scope.loadLangage = function(){
-        $scope.loginTxt = $scope.jsonLang.toto;
-    };
-
     $scope.setLangage = function(lang){
         if(lang === "eng"){//anglais
             $http.get('./langages/eng.json')
                 .success(function(data){
                     $scope.jsonLang = data;
-                    $scope.loadLangage();
-                    console.log($scope.jsonLang);
                 });
         }else{//francais
             $http.get('./langages/fr.json').success(function(data){
                 $scope.jsonLang = data;
-                $scope.loadLangage();
             });
+        }
+    };
+
+    $scope.changeLangage = function(){
+        if($scope.jsonLang.lang === "fr"){
+            $scope.setLangage("eng");
+        }else{
+            $scope.setLangage("fr");
         }
     };
 

@@ -11,27 +11,27 @@
 
         <form name="loginForm">
             <md-input-container>
-                <label>{{loginTxt}}</label>
+                <label>{{jsonLang.login}}</label>
                 <input ng-model="login" required name="login">
                 <div ng-messages="loginForm.login.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
                 </div>
             </md-input-container>
             <md-input-container >
-                <label>Password</label>
+                <label>{{jsonLang.pwd}}</label>
                 <input type="password" required name="pwd" ng-model="pwd">
                 <div ng-messages="loginForm.pwd.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
                 </div>
                 <div ng-messages="infoTry">
-                    <div ng-message="badPwdLogin">Bad password or login.</div>
+                    <div ng-message="badPwdLogin">{{jsonLang.badConnexion}}</div>
                 </div>
             </md-input-container>
 
-            <md-button ng-click="connect()" ng-disabled="loginForm.login.$error.required || loginForm.pwd.$error.required">Connect</md-button>
+            <md-button ng-click="connect()" ng-disabled="loginForm.login.$error.required || loginForm.pwd.$error.required">{{jsonLang.connect}}</md-button>
 
         </form>
-        <md-button  ng-click="go('/signin')">Sign-in</md-button>
+        <md-button  ng-click="go('/signin')">{{jsonLang.signin}}</md-button>
     </boxStyle>
 </div>
 

@@ -12,45 +12,45 @@
         <form name="signinForm">
 
             <md-input-container>
-                <label>Pseudo</label>
+                <label>{{jsonLang.login}}</label>
                 <input required name="pseudo" ng-model="pseudo" ng-change="checkPseudo()">
                 <div ng-messages="signinForm.pseudo.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
                 </div>
             </md-input-container>
 
             <md-input-container>
-                <label>e-mail</label>
+                <label>{{jsonLang.email}}</label>
                 <input type="email" required name="email" ng-model="email" ng-change="checkEmail()">
                 <div ng-messages="signinForm.email.$error">
-                    <div ng-message="required">This is required.</div>
-                    <div ng-message="email">This is not an email.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
+                    <div ng-message="email">{{jsonLang.notEmail}}</div>
                 </div>
             </md-input-container>
 
             <md-input-container >
-                <label>Password</label>
+                <label>{{jsonLang.pwd}}</label>
                 <input type="password" required name="pwd"  ng-model="pwd" ng-change="checkPwds()">
                 <div ng-messages="signinForm.pwd.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
                 </div>
                 <div ng-messages="pwdNotEqual">
-                    <div ng-message="notEqual">Password not equals.</div>
+                    <div ng-message="notEqual">{{jsonLang.passwordNotEqual}}</div>
                 </div>
             </md-input-container>
 
             <md-input-container >
-                <label>Confirm password</label>
+                <label>{{jsonLang.pwdConfirm}}</label>
                 <input type="password" required name="pwd2" ng-model="pwd2" ng-change="checkPwds()">
             <div ng-messages="signinForm.pwd2.$error">
-                <div ng-message="required">This is required.</div>
+                <div ng-message="required">{{jsonLang.required}}</div>
             </div>
                 <div ng-messages="pwdNotEqual">
-                    <div ng-message="notEqual">Password not equals.</div>
+                    <div ng-message="notEqual">{{jsonLang.passwordNotEqual}}</div>
                 </div>
             </md-input-container>
 
-            <md-button ng-click="signin()" ng-show="pwdOk && emailOk && pseudoOk">Sign-in</md-button>
+            <md-button ng-click="signin()" ng-show="pwdOk && emailOk && pseudoOk">{{jsonLang.signin}}</md-button>
 
         </form>
     </boxStyle>

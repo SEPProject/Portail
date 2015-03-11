@@ -1,3 +1,18 @@
 {
-  "toto":"toto"
+  "lang":"fr",
+  "login":"Pseudo",
+  "pwd":"Mot de passe",
+  "email":"e-mail",
+  "required":"Ce champ est requis",
+  "notEmail":"Ce n'est pas un e-mail",
+  "pwdConfirm":"Confirmation du mot de passe",
+  "signin":"S'enregistrer",
+  "connect":"Connexion",
+  "deconnect":"Deconnexion",
+  "profile":"Profile",
+  "applets":"Applets",
+  "adminUser":"Administration des utilisateurs",
+  "adminApplet":"Administration des applets",
+  "badConnexion":"Mauvais pseudo ou mot de passe",
+  "passwordNotEqual":"Mot de passe pas identiques"
 }
