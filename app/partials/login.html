@@ -11,7 +11,7 @@
 
         <form name="loginForm">
             <md-input-container>
-                <label>Login</label>
+                <label>{{loginTxt}}</label>
                 <input ng-model="login" required name="login">
                 <div ng-messages="loginForm.login.$error">
                     <div ng-message="required">This is required.</div>
