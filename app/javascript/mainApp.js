@@ -74,7 +74,7 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
     }
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http){
+mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet){
 
     $scope.version = "v0.0.1"
     $scope.toggleMenu = function(){
@@ -144,6 +144,14 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
     };
 
     $scope.setLangage("fr");
+
+    $scope.showGridBottomSheet = function($event) {
+        $mdBottomSheet.show({
+            templateUrl: './partials/bottomSheet.html',
+            controller: 'bottomSheetCtrl',
+            targetEvent: $event
+        });
+    };
 
 });
 
@@ -572,5 +580,10 @@ mainApp.controller('referencesCtrl',function($scope,$http) {
             });
     }
 
+
+
+});
+
+mainApp.controller('bottomSheetCtrl',function($scope) {
 
 });
