@@ -76,6 +76,7 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
 
 mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http){
 
+    $scope.version = "v0.0.1"
     $scope.toggleMenu = function(){
         if(isConnected){
             $mdSidenav('left').toggle();
