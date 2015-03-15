@@ -15,6 +15,8 @@
   "adminApplet":"Applets admin",
   "badConnexion":"Bad login or password",
   "passwordNotEqual":"Password not equals",
-  "references":"References"
+  "references":"References",
+  "bottomVersion":"Last upload : 15/01/2015",
+  "bottomContact":"By email : ph0enix.fiire@gmail.com"
 
 }

@@ -1,7 +1,7 @@
-<md-bottom-sheet class="md-grid" >
+<md-bottom-sheet class="md-grid">
     <md-list layout-align="center center" layout="center center">
         <md-item ng-repeat="item in items">
-            <md-button>
+            <md-button ng-click="changeMessage($index)">
                 <div >
                     {{item.name }}
                     <md-icon layout-align="center center" layout="center center" icon="{{item.icon}}"></md-icon>
@@ -9,4 +9,9 @@
             </md-button>
         </md-item>
     </md-list>
+    <div layout-align="center center" layout="center center">
+        {{messages}}
+    </div>
+
 </md-bottom-sheet>
+

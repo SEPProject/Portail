@@ -7,6 +7,8 @@ var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngC
 var isConnected = false;
 var isAdmin = true;
 
+var jsonLang;
+
 var user = {'id':'','pseudo':'','email':'','token':0};
 
 
@@ -126,10 +128,12 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
             $http.get('./langages/eng.json')
                 .success(function(data){
                     $scope.jsonLang = data;
+                    jsonLang = data;
                 });
         }else{//francais
             $http.get('./langages/fr.json').success(function(data){
                 $scope.jsonLang = data;
+                jsonLang = data;
             });
         }
     };
@@ -591,5 +595,16 @@ mainApp.controller('bottomSheetCtrl',function($scope) {
         { name: 'Contact', icon: './bower_components/material-design-icons/notification/svg/design/ic_sms_24px.svg' },
         { name: $scope.version, icon: '' }
     ];
+
+    $scope.messages ='';
+
+    $scope.changeMessage = function(index){
+        if(index == 0){
+            $scope.messages = jsonLang.bottomContact;
+        }else if(index == 1){
+            $scope.messages = jsonLang.bottomVersion;
+
+        }
+    };
 
 });
