@@ -14,5 +14,6 @@
   "adminUser":"Administration des utilisateurs",
   "adminApplet":"Administration des applets",
   "badConnexion":"Mauvais pseudo ou mot de passe",
-  "passwordNotEqual":"Mot de passe pas identiques"
+  "passwordNotEqual":"Mot de passe pas identiques",
+  "references":"Références"
 }

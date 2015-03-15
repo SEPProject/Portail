@@ -14,6 +14,7 @@
   "adminUser":"Users admin",
   "adminApplet":"Applets admin",
   "badConnexion":"Bad login or password",
-  "passwordNotEqual":"Password not equals"
+  "passwordNotEqual":"Password not equals",
+  "references":"References"
 
 }

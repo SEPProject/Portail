@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div layout="center center" layout-align="center center" layout-margin>
+    {{jsonLang.references}}
+</div>
+
+<div id="centerBoxStyle" ng-repeat="ref in references">
+
+        <div ng-click="ref.expand = !ref.expand">
+            <md-toolbar layout="center center" layout-align="center center">{{ref.title}}</md-toolbar>
+        </div>
+
+        <div ng-show="ref.expand" layout="center center" layout-align="center center">
+            <boxStyle>
+
+                {{ref.description}}
+                <br>
+                <a{{ref.url}}
+
+            </boxStyle>
+        </div>
+</div>
+
+</body>
+</html>

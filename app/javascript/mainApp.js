@@ -53,6 +53,11 @@ mainApp.constant("appConfig",{
             url : '/adminApplets',
             ctrl : 'adminAppletsCtrl',
             file : 'adminapplets.html'
+        },
+        reference : {
+            url : '/references',
+            ctrl : 'referencesCtrl',
+            file : 'references.html'
         }
     }
 
@@ -142,10 +147,6 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
 });
 
 mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserAction){
-
-    $scope.go = function(path){
-        $location.path(path);
-    }
 
     $scope.login = '';
     $scope.pwd = '';
@@ -544,6 +545,31 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
     }
 
 
+
+
+});
+
+mainApp.controller('referencesCtrl',function($scope,$http) {
+
+    if($scope.jsonLang.lang === "fr"){
+        $http.get('./json/referencesFr.json')
+            .success(function(data){
+                $scope.references = data;
+                for(var i in $scope.references){
+                    $scope.references[i].expand=false;
+                }
+
+            });
+    }else{
+        $http.get('./json/referencesEng.json')
+            .success(function(data){
+                $scope.references = data;
+                for(var i in $scope.references){
+                    $scope.references[i].expand=false;
+                }
+
+            });
+    }
 
 
 });

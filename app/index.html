@@ -51,9 +51,16 @@
                 {{jsonLang.applets}}
             </md-button>
 
-            <md-button ng-click="deconnect()">
+            <md-button ng-click="go('/references')">
+                {{jsonLang.references}}
+            </md-button>
+
+
+            <decoStyle>
+            <md-button style="width: 100%;" ng-click="deconnect()"  >
                 {{jsonLang.deconnect}}
             </md-button>
+            </decoStyle>
 
             <md-button ng-show="!isAdmin" ng-click="go('/adminUser')">
                 {{jsonLang.adminUser}}
