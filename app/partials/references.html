@@ -18,10 +18,11 @@
 
         <div ng-show="ref.expand" layout="center center" layout-align="center center">
             <boxStyle>
-
-                {{ref.description}}
-                <br>
-                <a{{ref.url}}
+                <div ng-repeat="_url in ref.urls" layout-magin>
+                    {{_url.description}}
+                    <br>
+                    {{_url.url}}
+                </div>
 
             </boxStyle>
         </div>
