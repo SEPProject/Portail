@@ -64,7 +64,7 @@ decoStyle {
   background-color: lightcoral;
 }
 
-#centerBoxStyle {
+.centerBoxStyle {
   width: 50% ;
   color: #000000;
   margin-top: 2%;

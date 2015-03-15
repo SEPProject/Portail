@@ -603,7 +603,6 @@ mainApp.controller('bottomSheetCtrl',function($scope) {
             $scope.messages = jsonLang.bottomContact;
         }else if(index == 1){
             $scope.messages = jsonLang.bottomVersion;
-
         }
     };
 

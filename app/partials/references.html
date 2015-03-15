@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<div layout="center center" layout-align="center center" layout-margin>
+<div  class="centerBoxStyle">
     {{jsonLang.references}}
 </div>
 
-<div id="centerBoxStyle" ng-repeat="ref in references">
+<div class="centerBoxStyle" ng-repeat="ref in references">
 
         <div ng-click="ref.expand = !ref.expand">
             <md-toolbar layout="center center" layout-align="center center">{{ref.title}}</md-toolbar>
@@ -22,6 +22,8 @@
                     {{_url.description}}
                     <br>
                     {{_url.url}}
+                    <br>
+                    <br>
                 </div>
 
             </boxStyle>
