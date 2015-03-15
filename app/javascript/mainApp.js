@@ -76,7 +76,6 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
 
 mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet){
 
-    $scope.version = "v0.0.1"
     $scope.toggleMenu = function(){
         if(isConnected){
             $mdSidenav('left').toggle();
@@ -585,5 +584,12 @@ mainApp.controller('referencesCtrl',function($scope,$http) {
 });
 
 mainApp.controller('bottomSheetCtrl',function($scope) {
+
+    $scope.version = "v0.0.1"
+
+    $scope.items = [
+        { name: 'Contact', icon: './bower_components/material-design-icons/notification/svg/design/ic_sms_24px.svg' },
+        { name: $scope.version, icon: '' }
+    ];
 
 });
