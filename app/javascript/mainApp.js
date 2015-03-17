@@ -192,7 +192,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
 });
 
-mainApp.controller('signinCtrl',function($scope,User,$location){
+mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
 
     $scope.email = '';
     $scope.pwd = '';
@@ -227,11 +227,11 @@ mainApp.controller('signinCtrl',function($scope,User,$location){
         }
     };
 
-    $scope.signin = function(){
+    $scope.signin = function(ev){
         var userAction = new User;
         userAction.email = $scope.email;
-        userAction.pwd = $scope.pwd;
-        userAction.pseudo = $scope.pseudo;
+        userAction.passwordhashed = $scope.pwd;
+        userAction.login = $scope.pseudo;
         userAction.$save(function(data){
             console.log("data");
             console.log(data);
@@ -241,8 +241,11 @@ mainApp.controller('signinCtrl',function($scope,User,$location){
             user.id = data.id;
             $location.path('/welcome');
         },function(err){
-            console.log("err");
-            console.log(err);
+            if(err.status == 400){
+                $scope.showErrorSignIn(ev,"Problémes d'enregistrement, vérifiez vos informations");
+            }else if(err.status == 500){
+                $scope.showErrorSignIn(ev,"Problémes de serveur");
+            }
         });
     };
 
@@ -254,6 +257,17 @@ mainApp.controller('signinCtrl',function($scope,User,$location){
             $scope.pseudoOk = true;
         }
     }
+
+    $scope.showErrorSignIn = function(ev,result) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title('Sign in result')
+                .content(result)
+                .ariaLabel('Sign in notification')
+                .ok('Ok')
+                .targetEvent(ev)
+        );
+    };
 
 });
 
