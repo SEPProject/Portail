@@ -17,6 +17,13 @@
   "passwordNotEqual":"Mot de passe pas identiques",
   "references":"Références",
   "bottomVersion":"Derniére mise à jour : 15/01/2015",
-  "bottomContact":"Par email : ph0enix.fiire@gmail.com"
-
+  "bottomContact":"Par email : ph0enix.fiire@gmail.com",
+  "pbSignIn":"Vérifiez vos informations",
+  "pbServeur":"Probléme de serveur. Réessayez ultérieurement",
+  "signInResult":"Problémes d'enregistrements.",
+  "successChangeInfo":"Informations modifiées",
+  "modificationResult":"Résultat de modification",
+  "continue":"Continuer",
+  "passwordNotif":"Notification de mot de passe",
+  "failChangeInfo":"Echec du changement d'informations"
 }

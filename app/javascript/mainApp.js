@@ -242,9 +242,9 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
             $location.path('/welcome');
         },function(err){
             if(err.status == 400){
-                $scope.showErrorSignIn(ev,"Problémes d'enregistrement, vérifiez vos informations");
+                $scope.showErrorSignIn(ev,jsonLang.pbSignIn);
             }else if(err.status == 500){
-                $scope.showErrorSignIn(ev,"Problémes de serveur");
+                $scope.showErrorSignIn(ev,jsonLang.pbServeur);
             }
         });
     };
@@ -261,7 +261,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
     $scope.showErrorSignIn = function(ev,result) {
         $mdDialog.show(
             $mdDialog.alert()
-                .title('Sign in result')
+                .title(jsonLang.signInResult)
                 .content(result)
                 .ariaLabel('Sign in notification')
                 .ok('Ok')
@@ -374,9 +374,9 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
         userChanged.$save(function(data){
             user.email =  $scope.emailModify;
             user.pseudo = $scope.pseudo;
-            $scope.showModifResult(ev,'Success to change your informations');
+            $scope.showModifResult(ev,jsonLang.successChangeInfo);
         },function(err){
-            $scope.showModifResult(ev,'Fail to change your informations');
+            $scope.showModifResult(ev,jsonLang.failChangeInfo);
         });
 
     };
@@ -384,10 +384,10 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
     $scope.showModifResult = function(ev,result) {
         $mdDialog.show(
             $mdDialog.alert()
-                .title('Modification result')
+                .title(jsonLang.modificationResult)
                 .content(result)
-                .ariaLabel('Password notification')
-                .ok('Continue')
+                .ariaLabel(jsonLang.passwordNotif)
+                .ok(jsonLang.continue)
                 .targetEvent(ev)
         );
     };
