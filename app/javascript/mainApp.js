@@ -5,7 +5,7 @@
 
 var mainApp = angular.module('mainApp',['ngMaterial','ngRoute','ngMessages','ngCookies','network','resourceNetwork']);
 var isConnected = false;
-var isAdmin = true;
+var isAdmin = false;
 
 var jsonLang;
 
@@ -166,7 +166,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
     $scope.userConnected = isConnected;
 
-    $scope.connect = function(){
+    $scope.connect = function(ev){
 
         user.password = $scope.pwd;
         user.pseudo = $scope.login;
@@ -184,11 +184,30 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
             isConnected  = true;
         },function(err){
             console.log(err);
-            $scope.userConnected =  true;
-            isConnected  = true;
-            $location.path('/welcome');
+            //$scope.userConnected =  true;
+           // isConnected  = true;
+          //  $location.path('/welcome');
+
+            if(err.status == 400){
+                $scope.showErrorSignIn(ev,jsonLang.pbSignIn);
+            }else{
+                $scope.showErrorSignIn(ev,jsonLang.pbServeur);
+            }
+
         });
     };
+
+    $scope.showErrorSignIn = function(ev,result) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title(jsonLang.loginResult)
+                .content(result)
+                .ariaLabel('')
+                .ok('Ok')
+                .targetEvent(ev)
+        );
+    };
+
 
 });
 
@@ -230,8 +249,8 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
     $scope.signin = function(ev){
         var userAction = new User;
         userAction.email = $scope.email;
-        userAction.passwordhashed = $scope.pwd;
         userAction.login = $scope.pseudo;
+        userAction.passwordhashed = $scope.pwd;
         userAction.$save(function(data){
             console.log("data");
             console.log(data);
@@ -239,6 +258,8 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
             user.email =  $scope.email;
             user.token =  data.token;
             user.id = data.id;
+            $scope.userConnected =  true;
+            isConnected  = true;
             $location.path('/welcome');
         },function(err){
             if(err.status == 400){

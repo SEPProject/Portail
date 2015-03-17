@@ -25,5 +25,6 @@
   "modificationResult":"Résultat de modification",
   "continue":"Continuer",
   "passwordNotif":"Notification de mot de passe",
-  "failChangeInfo":"Echec du changement d'informations"
+  "failChangeInfo":"Echec du changement d'informations",
+  "loginResult":"Erreur de connexion"
 }

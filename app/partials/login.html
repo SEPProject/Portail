@@ -28,7 +28,7 @@
                 </div>
             </md-input-container>
 
-            <md-button ng-click="connect()" ng-disabled="loginForm.login.$error.required || loginForm.pwd.$error.required">{{jsonLang.connect}}</md-button>
+            <md-button ng-click="connect($event)" ng-disabled="loginForm.login.$error.required || loginForm.pwd.$error.required">{{jsonLang.connect}}</md-button>
 
         </form>
         <md-button  ng-click="go('/signin')">{{jsonLang.signin}}</md-button>
