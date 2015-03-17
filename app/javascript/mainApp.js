@@ -158,7 +158,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
 
 });
 
-mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserAction){
+mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserAction,$mdDialog){
 
     $scope.login = '';
     $scope.pwd = '';
