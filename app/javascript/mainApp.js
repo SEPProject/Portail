@@ -258,6 +258,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
             user.email =  $scope.email;
             user.token =  data.token;
             user.id = data.id;
+            console.log(user.id+" idididid");
             $scope.userConnected =  true;
             isConnected  = true;
             $location.path('/welcome');
@@ -266,6 +267,8 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
                 $scope.showErrorSignIn(ev,jsonLang.pbSignIn);
             }else if(err.status == 500){
                 $scope.showErrorSignIn(ev,jsonLang.pbServeur);
+            }else if(err.status == 401){
+                $scope.showErrorSignIn(ev,jsonLang.pbLoginExist);
             }
         });
     };
