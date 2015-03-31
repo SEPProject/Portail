@@ -88,7 +88,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
     };
 
     $scope.nameProject = 'Security Educational Platform';
-    $scope.abreviationProject = 'SEP';
+    $scope.abreviationProject = "SEP";
 
     $scope.userConnected = isConnected;
 
@@ -168,18 +168,19 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
     $scope.connect = function(ev){
 
-        user.password = $scope.pwd;
         user.pseudo = $scope.login;
         user.email = $scope.login;
+        user.passwordhashed = $scope.pwd;
 
         var userAction = new UserAction;
+        userAction.login = user.pseudo;
         userAction.email = user.email;
-        userAction.password = user.password;
-        userAction.pseudo = user.pseudo;
+        userAction.passwordhashed = CryptoJS.MD5(user.passwordhashed).toString();
         userAction.$save(function(data){
-            console.log(data);
+         //   console.log("ok on y est");
+          //  console.log(data);
             $scope.userConnected =  true;
-           // $cookies.token = data.token;
+            $cookies.token = data.token;
             $location.path('/welcome');
             isConnected  = true;
         },function(err){
@@ -250,15 +251,15 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
         var userAction = new User;
         userAction.email = $scope.email;
         userAction.login = $scope.pseudo;
-        userAction.passwordhashed = $scope.pwd;
+        userAction.passwordhashed = CryptoJS.MD5($scope.pwd).toString();
         userAction.$save(function(data){
-            console.log("data");
-            console.log(data);
+           // console.log("data");
+           // console.log(data);
             user.pseudo =  $scope.pseudo;
             user.email =  $scope.email;
             user.token =  data.token;
             user.id = data.id;
-            console.log(user.id+" idididid");
+            console.log(user.id+" id"+user.token);
             $scope.userConnected =  true;
             isConnected  = true;
             $location.path('/welcome');
@@ -390,9 +391,9 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
         var userChanged = new User;
         userChanged.idM = 1;
+        userChanged.login =  $scope.pseudoModify;
         userChanged.email = $scope.emailModify;
-        userChanged.pseudo =  $scope.pseudoModify;
-        userChanged.password =  $scope.passwordModify;
+        userChanged.passwordHashed = CryptoJS.MD5($scope.passwordModify).toString();
         userChanged.id = user.id;
         //userChanged.token = user.token;
         userChanged.$save(function(data){
@@ -563,7 +564,7 @@ mainApp.controller('adminAppletsCtrl',function($scope,Applet,Domain,$cookieStore
         applet.id = id;
 
         applet.$remove(function(data){
-            var nouveauxApplets = [{}];
+            var nouveauxApplets = [];
             for(var i in $scope.applets){
                 if(! ($scope.applets[i].id == id.id)){
                     nouveauxApplets.push($scope.applets[i]);
