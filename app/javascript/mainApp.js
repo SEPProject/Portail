@@ -106,7 +106,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
         isConnected = false;
         $scope.go('/login');
         var userAction = {};
-        //userAction.token = $cookieStore.get('token');
+        userAction.token = $cookieStore.get('token');
         userAction.id = user.id;
         UserAction.delete(userAction,function(data){
             $scope.login = '';
@@ -120,7 +120,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
         },function(err){
             //what do we do in that case ?
         });
-       // $cookieStore.remove('token');
+        $cookieStore.remove('token');
     };
 
     $scope.setLangage = function(lang){
@@ -177,8 +177,10 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
         userAction.email = user.email;
         userAction.passwordhashed = CryptoJS.MD5(user.passwordhashed).toString();
         userAction.$save(function(data){
-         //   console.log("ok on y est");
-          //  console.log(data);
+            console.log(data);
+            console.log("id"+data.id+" token "+data.token);
+            user.id = data.id;
+            user.token = data.token;
             $scope.userConnected =  true;
             $cookies.token = data.token;
             $location.path('/welcome');
@@ -356,9 +358,12 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
     var userGet ={};
     userGet.id = user.id;
-    //userGet.token = user.token;
+    userGet.token = user.token;
     User.get(userGet,function(data){
-
+        user.email = data.email;
+        user.pseudo = data.pseudo;
+        $scope.pseudoModify = user.pseudo;
+        $scope.emailModify = user.email;
     },function(err){
 
     });
@@ -388,17 +393,21 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
 
     $scope.changeInfo = function(ev){
-
+        console.log("UYSER "+user.id);
+        $scope.userId = user.id;
         var userChanged = new User;
         userChanged.idM = 1;
         userChanged.login =  $scope.pseudoModify;
         userChanged.email = $scope.emailModify;
-        userChanged.passwordHashed = CryptoJS.MD5($scope.passwordModify).toString();
-        userChanged.id = user.id;
-        //userChanged.token = user.token;
+        if(!($scope.oldPwd === '')){
+            userChanged.passwordhashed = CryptoJS.MD5($scope.passwordModify).toString();
+            userChanged.passwordHashedOld = CryptoJS.MD5($scope.oldPwd).toString();
+        }
+        userChanged.id = user.id; //plus besoin de l'id avec le token
+        userChanged.token = user.token;
         userChanged.$save(function(data){
             user.email =  $scope.emailModify;
-            user.pseudo = $scope.pseudo;
+            user.pseudo = $scope.pseudoModify;
             $scope.showModifResult(ev,jsonLang.successChangeInfo);
         },function(err){
             $scope.showModifResult(ev,jsonLang.failChangeInfo);
