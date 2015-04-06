@@ -9,7 +9,7 @@ var isAdmin = false;
 
 var jsonLang;
 
-var user = {'id':'','pseudo':'','email':'','token':0};
+var user = {'pseudo':'','email':'','token':0};
 
 
 mainApp.constant("appConfig",{
@@ -107,7 +107,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
         $scope.go('/login');
         var userAction = {};
         userAction.token = $cookieStore.get('token');
-        userAction.id = user.id;
+       // userAction.id = user.id;
         UserAction.delete(userAction,function(data){
             $scope.login = '';
             $scope.pwd = '';
@@ -178,8 +178,8 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
         userAction.passwordhashed = CryptoJS.MD5(user.passwordhashed).toString();
         userAction.$save(function(data){
             console.log(data);
-            console.log("id"+data.id+" token "+data.token);
-            user.id = data.id;
+           // console.log("id"+data.id+" token "+data.token);
+           // user.id = data.id;
             user.token = data.token;
             $scope.userConnected =  true;
             $cookies.token = data.token;
@@ -260,8 +260,8 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
             user.pseudo =  $scope.pseudo;
             user.email =  $scope.email;
             user.token =  data.token;
-            user.id = data.id;
-            console.log(user.id+" id"+user.token);
+           // user.id = data.id;
+           // console.log(user.id+" id"+user.token);
             $scope.userConnected =  true;
             isConnected  = true;
             $location.path('/welcome');
@@ -357,7 +357,7 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
     $scope.pwdNotEqual = {};
 
     var userGet ={};
-    userGet.id = user.id;
+   // userGet.id = user.id;
     userGet.token = user.token;
     User.get(userGet,function(data){
         user.email = data.email;
@@ -393,8 +393,8 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
 
     $scope.changeInfo = function(ev){
-        console.log("UYSER "+user.id);
-        $scope.userId = user.id;
+       // console.log("UYSER "+user.id);
+       // $scope.userId = user.id;
         var userChanged = new User;
         userChanged.idM = 1;
         userChanged.login =  $scope.pseudoModify;
@@ -403,7 +403,7 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
             userChanged.passwordhashed = CryptoJS.MD5($scope.passwordModify).toString();
             userChanged.passwordHashedOld = CryptoJS.MD5($scope.oldPwd).toString();
         }
-        userChanged.id = user.id; //plus besoin de l'id avec le token
+       // userChanged.id = user.id; //plus besoin de l'id avec le token
         userChanged.token = user.token;
         userChanged.$save(function(data){
             user.email =  $scope.emailModify;
@@ -443,9 +443,9 @@ mainApp.controller('adminUserCtrl',function($scope,User,$cookieStore,UserAction,
 
     $scope.deleteUser = function(id,ev){
         var userDel = new User;
-        //userDel.token = $cookieStore.get('token');
+        userDel.token = $cookieStore.get('token');
         //userDel.id = id;
-        userDel.id = "123";
+       // userDel.id = "123";
         userDel.$remove(function(data){
             $scope.showModifResult(ev,'User deleted','Delete result');
         },function(err){
