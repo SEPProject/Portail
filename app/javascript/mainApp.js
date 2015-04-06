@@ -323,6 +323,7 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     applets.all = true;
     Applet.get(applets,function(data){
         $scope.applets = data;
+        console.log("ok applet"+$scope.applets);
     },function(err){
 
     });
@@ -331,6 +332,7 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     domains.token = $cookieStore.get('token');
     Domain.get(domains,function(data){
         $scope.domains = data;
+        console.log("ok domain"+($scope.domains));
     },function(err){
 
     });
