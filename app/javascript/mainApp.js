@@ -349,7 +349,7 @@ mainApp.controller('welcomeCtrl',function($scope){
 mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){
     $scope.selectedTab = 0;
     $scope.isConnected = isConnected;
-
+/*
     $http.get('./domains.json').success(function(data){
         $scope.domains = data;
     });
@@ -361,11 +361,12 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
             data[i].isCollapsed = true;
         }
     });
-
+*/
     var applets = {};
     applets.token = $cookieStore.get('token');
     applets.all = true;
-    Applet.get(applets,function(data){
+    Applet.query(applets,function(data){
+        console.log(JSON.stringify(data)+" LALALLALALALA ");
         $scope.applets = data;
         console.log("ok applet"+$scope.applets);
     },function(err){
@@ -374,7 +375,8 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
 
     var domains = {};
     domains.token = $cookieStore.get('token');
-    Domain.get(domains,function(data){
+    Domain.query(domains,function(data){
+        console.log(JSON.stringify(data)+" LALALLALALALA ");
         $scope.domains = data;
         console.log("ok domain"+($scope.domains));
     },function(err){

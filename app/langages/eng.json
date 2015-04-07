@@ -31,7 +31,12 @@
   "reconnectTitle":"End of your session",
   "reconnectContent":"Session expired. Connect again.",
   "badPwd":"Bad password",
-  "badPwdContent":"Your password is not correct, try again."
+  "badPwdContent":"Your password is not correct, try again.",
+  "newPassword":"New password",
+  "oldPassword":"Old password",
+  "profileInfo":"Your profile",
+  "changeInfo":"Change informations"
+
 
 
 }

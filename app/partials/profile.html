@@ -18,10 +18,10 @@
         <form name="signinForm">
 
             <md-input-container>
-                <label>Pseudo</label>
+                <label>{{jsonLang.login}}</label>
                 <input required name="pseudo" ng-model="pseudoModify" ng-change="checkPseudo()">
                 <div ng-messages="signinForm.pseudo.$error">
-                    <div ng-message="required">This is required.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
                 </div>
             </md-input-container>
 
@@ -29,29 +29,29 @@
                 <label>e-mail</label>
                 <input type="email" required name="email" ng-model="emailModify" ng-change="checkEmail()">
                 <div ng-messages="signinForm.email.$error">
-                    <div ng-message="required">This is required.</div>
-                    <div ng-message="email">This is not an email.</div>
+                    <div ng-message="required">{{jsonLang.required}}</div>
+                    <div ng-message="email">{{jsonLang.notEmail}}</div>
                 </div>
             </md-input-container>
 
             <md-input-container >
-                <label>Old password</label>
+                <label>{{jsonLang.oldPassword}}</label>
                 <input type="password"  name="oldPwd"  ng-model="oldPwd">
             </md-input-container>
 
             <md-input-container >
-                <label>New password</label>
+                <label>{{jsonLang.newPassword}}</label>
                 <input type="password"  name="pwd"  ng-model="pwd" ng-change="checkPwds()">
                 <div ng-messages="pwdNotEqual">
-                    <div ng-message="notEqual">Password not equals.</div>
+                    <div ng-message="notEqual">{{jsonLang.passwordNotEqual}}</div>
                 </div>
             </md-input-container>
 
             <md-input-container >
-                <label>Confirm password</label>
+                <label>{{jsonLang.newPassword}}</label>
                 <input type="password"  name="pwd2" ng-model="passwordModify" ng-change="checkPwds()">
                 <div ng-messages="pwdNotEqual">
-                    <div ng-message="notEqual">Password not equals.</div>
+                    <div ng-message="notEqual">{{jsonLang.passwordNotEqual}}</div>
                 </div>
             </md-input-container>
 

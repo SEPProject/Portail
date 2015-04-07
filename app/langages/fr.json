@@ -31,5 +31,9 @@
   "reconnectTitle":"Fin de session de connexion",
   "reconnectContent":"Votre session a expirée. Veuillez vous reconnecter",
   "badPwd":"Mauvais mot de passe",
-  "badPwdContent":"Ton mot de passe n'est pas le bon. Veuillez réessayer."
+  "badPwdContent":"Ton mot de passe n'est pas le bon. Veuillez réessayer.",
+  "newPassword":"Nouveau mot de passe",
+  "oldPassword":"Ancien mot de passe",
+  "profileInfo":"Votre profil",
+  "changeInfo":"Changer les informations"
 }
