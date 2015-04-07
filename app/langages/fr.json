@@ -29,5 +29,7 @@
   "loginResult":"Erreur de connexion",
   "pbLoginExist":"Le login existe déjà.",
   "reconnectTitle":"Fin de session de connexion",
-  "reconnectContent":"Votre session a expirée. Veuillez vous reconnecter"
+  "reconnectContent":"Votre session a expirée. Veuillez vous reconnecter",
+  "badPwd":"Mauvais mot de passe",
+  "badPwdContent":"Ton mot de passe n'est pas le bon. Veuillez réessayer."
 }

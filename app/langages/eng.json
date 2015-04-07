@@ -29,7 +29,9 @@
   "loginResult":"Connexion error",
   "pbLoginExist":"Login already exist.",
   "reconnectTitle":"End of your session",
-  "reconnectContent":"Session expired. Connect again."
+  "reconnectContent":"Session expired. Connect again.",
+  "badPwd":"Bad password",
+  "badPwdContent":"Your password is not correct, try again."
 
 
 }

@@ -127,7 +127,8 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
         $scope.userConnected = isConnected;
     };
 
-    $scope.nameProject = 'Security Educational Platform';
+   // $scope.nameProject = 'Security Educational Platform';
+    $scope.nameProject = CryptoJS.MD5('').toString();
     $scope.abreviationProject = "SEP";
 
     $scope.userConnected = isConnected;
@@ -445,8 +446,9 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
         userChanged.login =  $scope.pseudoModify;
         userChanged.email = $scope.emailModify;
         if(!($scope.oldPwd === '')){
+            console.log("ok");
             userChanged.passwordhashed = CryptoJS.MD5($scope.passwordModify).toString();
-            userChanged.passwordHashedOld = CryptoJS.MD5($scope.oldPwd).toString();
+            userChanged.passwordhashedold = CryptoJS.MD5($scope.oldPwd).toString();
         }
        // userChanged.id = user.id; //plus besoin de l'id avec le token
         userChanged.token = user.token;
@@ -455,7 +457,11 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
             user.pseudo = $scope.pseudoModify;
             $scope.showModifResult(ev,jsonLang.successChangeInfo);
         },function(err){
-            $scope.showModifResult(ev,jsonLang.failChangeInfo);
+            if(err.status == 401){
+                $scope.displayMessage(badPwd,badPwdContent,'ok');
+            }else{
+                $scope.showModifResult(ev,jsonLang.failChangeInfo);
+            }
         });
 
     };
