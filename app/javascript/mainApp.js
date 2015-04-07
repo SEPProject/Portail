@@ -76,7 +76,18 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
     }
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet,User){
+mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet,User){
+
+    $scope.displayMessage = function(title,content,button){
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title(title)
+                .content(content)
+                .ariaLabel('')
+                .ok(button)
+                .targetEvent()
+        );
+    }
 
     user.token =  $cookieStore.get('token');
 
@@ -89,7 +100,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
         // userGet.id = user.id;
         userGet.token = user.token;
         User.query(userGet,function(data){
-            console.log('li '+JSON.stringify(data));
+           // console.log('li '+JSON.stringify(data));
             isConnected = true;
             if(user.token == 1){
                 isAdmin = true;
@@ -97,7 +108,7 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
             user.email = data[0].email;
             user.pseudo = data[0].login;
         },function(err){
-            console.log('la');
+           // console.log('la');
             isConnected = false;
             isAdmin = false;
             if(err.status == 406){
