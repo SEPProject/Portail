@@ -76,7 +76,30 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
     }
 }]);
 
-mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet){
+mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet,User){
+
+    user.token =  $cookieStore.get('token');
+
+    console.log('token'+user.token);
+    if(user.token == 0) {
+        isConnected = false;
+        isAdmin = false;
+    }else{
+        isConnected = true;
+        if(user.token == 1){
+            isAdmin = true;
+        }
+        var userGet ={};
+        // userGet.id = user.id;
+        userGet.token = user.token;
+        User.get(userGet,function(data){
+            user.email = data.email;
+            user.pseudo = data.pseudo;
+        },function(err){
+
+        });
+    }
+
 
     $scope.toggleMenu = function(){
         if(isConnected){
