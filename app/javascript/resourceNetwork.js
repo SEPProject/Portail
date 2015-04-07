@@ -4,9 +4,11 @@ var resourceNetwork = angular.module( 'resourceNetwork', [ 'ngResource' ] );
 
 resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resource ) {
     return function( url, params, methods ) {
+        console.log('li');
         var defaults = {
             update: { method: 'put', isArray: false },
-            create: { method: 'post' }
+            create: { method: 'post' },
+            query: {method: 'get', isArray: true }
         };
 
         methods = angular.extend( defaults, methods );
@@ -19,8 +21,7 @@ resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resourc
             if ( !current.idM ) {
                 return current.$create(success, error);
             }
-            else {
-
+            else{
                 return current.$update(success, error);
             }
         };

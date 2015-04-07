@@ -80,26 +80,31 @@ mainApp.controller('mainCtrl',function($scope,$mdSidenav,$location,$cookieStore,
 
     user.token =  $cookieStore.get('token');
 
-    console.log('token'+user.token);
-    if(user.token == 0) {
+    console.log('token ask '+ user.token);
+    if(user.token == 0 || 'undefined' == typeof user.token) {
         isConnected = false;
         isAdmin = false;
     }else{
-        isConnected = true;
-        if(user.token == 1){
-            isAdmin = true;
-        }
         var userGet ={};
         // userGet.id = user.id;
         userGet.token = user.token;
-        User.get(userGet,function(data){
-            user.email = data.email;
-            user.pseudo = data.pseudo;
+        User.query(userGet,function(data){
+            console.log('li '+JSON.stringify(data));
+            isConnected = true;
+            if(user.token == 1){
+                isAdmin = true;
+            }
+            user.email = data[0].email;
+            user.pseudo = data[0].login;
         },function(err){
-
+            console.log('la');
+            isConnected = false;
+            isAdmin = false;
+            if(err.status == 406){
+                $scope.deconnect();
+            }
         });
     }
-
 
     $scope.toggleMenu = function(){
         if(isConnected){
@@ -384,9 +389,9 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
     var userGet ={};
    // userGet.id = user.id;
     userGet.token = user.token;
-    User.get(userGet,function(data){
-        user.email = data.email;
-        user.pseudo = data.pseudo;
+    User.query(userGet,function(data){
+        user.email = data[0].email;
+        user.pseudo = data[0].login;
         $scope.pseudoModify = user.pseudo;
         $scope.emailModify = user.email;
     },function(err){
