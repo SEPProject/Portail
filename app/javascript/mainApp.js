@@ -78,6 +78,8 @@ mainApp.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
 
 mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$cookieStore,UserAction,$http,$mdBottomSheet,User){
 
+    $scope.pseudo = user.pseudo;
+
     $scope.displayMessage = function(title,content,button){
         $mdDialog.show(
             $mdDialog.alert()
@@ -100,13 +102,15 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
         // userGet.id = user.id;
         userGet.token = user.token;
         User.query(userGet,function(data){
-           // console.log('li '+JSON.stringify(data));
             isConnected = true;
             if(user.token == 1){
                 isAdmin = true;
             }
             user.email = data[0].email;
             user.pseudo = data[0].login;
+            $scope.pseudo = user.pseudo;
+            // console.log('li '+user.pseudo);
+
         },function(err){
            // console.log('la');
             isConnected = false;
@@ -127,8 +131,8 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
         $scope.userConnected = isConnected;
     };
 
-   // $scope.nameProject = 'Security Educational Platform';
-    $scope.nameProject = CryptoJS.MD5('').toString();
+    $scope.nameProject = 'Security Educational Platform';
+    //$scope.nameProject = CryptoJS.MD5('').toString();
     $scope.abreviationProject = "SEP";
 
     $scope.userConnected = isConnected;
@@ -340,7 +344,6 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
 });
 
 mainApp.controller('welcomeCtrl',function($scope){
-    $scope.pseudo = user.pseudo;
 });
 
 mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){
@@ -437,7 +440,7 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
         }
     };
 
-
+    $scope.oldPwd  = '';
     $scope.changeInfo = function(ev){
        // console.log("UYSER "+user.id);
        // $scope.userId = user.id;
@@ -446,7 +449,6 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
         userChanged.login =  $scope.pseudoModify;
         userChanged.email = $scope.emailModify;
         if(!($scope.oldPwd === '')){
-            console.log("ok");
             userChanged.passwordhashed = CryptoJS.MD5($scope.passwordModify).toString();
             userChanged.passwordhashedold = CryptoJS.MD5($scope.oldPwd).toString();
         }
