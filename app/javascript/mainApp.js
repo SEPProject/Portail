@@ -310,7 +310,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
                 $scope.showErrorSignIn(ev,jsonLang.pbSignIn);
             }else if(err.status == 500){
                 $scope.showErrorSignIn(ev,jsonLang.pbServeur);
-            }else if(err.status == 401){
+            }else if(err.status == 410){
                 $scope.showErrorSignIn(ev,jsonLang.pbLoginExist);
             }
         });
