@@ -64,11 +64,11 @@
             </md-button>
             </decoStyle>
 
-            <md-button ng-show="!isAdmin" ng-click="go('/adminUser')">
+            <md-button ng-show="isAdmin" ng-click="go('/adminUser')">
                 {{jsonLang.adminUser}}
             </md-button>
 
-            <md-button ng-show="!isAdmin" ng-click="go('/adminApplets')">
+            <md-button ng-show="isAdmin" ng-click="go('/adminApplets')">
                 {{jsonLang.adminApplet}}
             </md-button>
 
