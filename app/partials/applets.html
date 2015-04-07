@@ -17,7 +17,7 @@
             </md-item>
 
 
-            <div ng-repeat="applet in applets" ng-if="applet.domain === tab.name">
+            <div ng-repeat="applet in applets" ng-if="applet.domain === tab.id">
 
                 <md-card >
                     <md-toolbar layout="center center" layout-align="center center" ng-click="applet.isCollapsed = !applet.isCollapsed" >

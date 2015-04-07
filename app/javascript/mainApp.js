@@ -366,9 +366,13 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     applets.token = $cookieStore.get('token');
     applets.all = true;
     Applet.query(applets,function(data){
-        console.log(JSON.stringify(data)+" LALALLALALALA ");
-        $scope.applets = data;
-        console.log("ok applet"+$scope.applets);
+
+        $scope.applets = JSON.parse(JSON.stringify(data));
+        for(var i in $scope.applets)
+        {
+            $scope.applets[i].isCollapsed = true;
+        }
+        console.log(JSON.stringify($scope.applets));
     },function(err){
 
     });
@@ -376,9 +380,8 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     var domains = {};
     domains.token = $cookieStore.get('token');
     Domain.query(domains,function(data){
-        console.log(JSON.stringify(data)+" LALALLALALALA ");
         $scope.domains = data;
-        console.log("ok domain"+($scope.domains));
+        console.log(JSON.stringify($scope.domains));
     },function(err){
 
     });
