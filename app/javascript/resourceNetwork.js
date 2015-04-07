@@ -4,7 +4,6 @@ var resourceNetwork = angular.module( 'resourceNetwork', [ 'ngResource' ] );
 
 resourceNetwork.factory( 'resourceNetworkFac', [ '$resource', function( $resource ) {
     return function( url, params, methods ) {
-        console.log('li');
         var defaults = {
             update: { method: 'put', isArray: false },
             create: { method: 'post' },

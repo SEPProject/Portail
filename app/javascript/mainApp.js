@@ -112,6 +112,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
             isConnected = false;
             isAdmin = false;
             if(err.status == 406){
+                $scope.displayMessage(reconnectTitle,reconnectContent,'ok');
                 $scope.deconnect();
             }
         });
@@ -406,7 +407,10 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
         $scope.pseudoModify = user.pseudo;
         $scope.emailModify = user.email;
     },function(err){
-
+        if(err.status == 406){
+            $scope.displayMessage(reconnectTitle,reconnectContent,'ok');
+            $scope.deconnect();
+        }
     });
 
     $scope.checkPwds = function(){

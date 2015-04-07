@@ -27,7 +27,9 @@
   "passwordNotif":"Password notification",
   "failChangeInfo":"Fail to change your informations",
   "loginResult":"Connexion error",
-  "pbLoginExist":"Login already exist."
+  "pbLoginExist":"Login already exist.",
+  "reconnectTitle":"End of your session",
+  "reconnectContent":"Session expired. Connect again."
 
 
 }
