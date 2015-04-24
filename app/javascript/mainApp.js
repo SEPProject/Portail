@@ -344,6 +344,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
 });
 
 mainApp.controller('welcomeCtrl',function($scope){
+    $scope.pseudo = user.pseudo;
 });
 
 mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){
@@ -688,8 +689,6 @@ mainApp.controller('referencesCtrl',function($scope,$http) {
 
             });
     }
-
-
 
 });
 

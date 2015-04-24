@@ -16,12 +16,14 @@
             <md-toolbar layout="center center" layout-align="center center">{{ref.title}}</md-toolbar>
         </div>
 
-        <div ng-show="ref.expand" layout="center center" layout-align="center center">
+        <div class="centerTxtReference" ng-show="ref.expand" >
             <boxStyle>
                 <div ng-repeat="_url in ref.urls" layout-magin>
                     {{_url.description}}
                     <br>
-                    {{_url.url}}
+                    <br>
+                    <a href="{{_url.url}}">LINK</a>
+                    <br>
                     <br>
                     <br>
                 </div>
