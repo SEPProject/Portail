@@ -109,7 +109,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
             user.email = data[0].email;
             user.pseudo = data[0].login;
             $scope.pseudo = user.pseudo;
-            // console.log('li '+user.pseudo);
+            console.log('li '+user.pseudo);
 
         },function(err){
            // console.log('la');
@@ -259,7 +259,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
 });
 
-mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
+mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookies){
 
     $scope.email = '';
     $scope.pwd = '';
@@ -305,7 +305,8 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
             user.pseudo =  $scope.pseudo;
             user.email =  $scope.email;
             user.token =  data.token;
-           // user.id = data.id;
+            $cookies.token = data.token;
+            // user.id = data.id;
            // console.log(user.id+" id"+user.token);
             $scope.userConnected =  true;
             isConnected  = true;
@@ -344,7 +345,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog){
 });
 
 mainApp.controller('welcomeCtrl',function($scope){
-    $scope.pseudo = user.pseudo;
+  //  $scope.pseudo = user.pseudo;
 });
 
 mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){
