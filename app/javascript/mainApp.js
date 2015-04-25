@@ -201,6 +201,10 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
         });
     };
 
+    $scope.setUser = function(data){
+        $scope.pseudo = data;
+    }
+
 });
 
 mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserAction,$mdDialog){
@@ -259,7 +263,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
 
 });
 
-mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookies){
+mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookies,$route){
 
     $scope.email = '';
     $scope.pwd = '';
@@ -297,20 +301,23 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookie
     $scope.signin = function(ev){
         var userAction = new User;
         userAction.email = $scope.email;
-        userAction.login = $scope.pseudo;
+        userAction.login = $scope.pseudoS;
         userAction.passwordhashed = CryptoJS.MD5($scope.pwd).toString();
         userAction.$save(function(data){
            // console.log("data");
            // console.log(data);
-            user.pseudo =  $scope.pseudo;
+            user.pseudo =  $scope.pseudoS;
+           // $scope.pseudo = user.pseudo;
             user.email =  $scope.email;
             user.token =  data.token;
             $cookies.token = data.token;
             // user.id = data.id;
-           // console.log(user.id+" id"+user.token);
+            console.log(user.pseudo+" token "+user.token);
             $scope.userConnected =  true;
             isConnected  = true;
             $location.path('/welcome');
+           // $route.reload();
+            $scope.setUser(user.pseudo);
         },function(err){
             if(err.status == 400){
                 $scope.showErrorSignIn(ev,jsonLang.pbSignIn);
@@ -324,7 +331,7 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookie
 
     $scope.checkPseudo = function(){
         //ask the server is the email is taken or not
-        if($scope.signinForm.pseudo.$error.required){
+        if($scope.signinForm.pseudoS.$error.required){
             $scope.pseudoOk = false;
         }else{
             $scope.pseudoOk = true;
