@@ -351,8 +351,28 @@ mainApp.controller('signinCtrl',function($scope,User,$location,$mdDialog,$cookie
 
 });
 
-mainApp.controller('welcomeCtrl',function($scope){
-  //  $scope.pseudo = user.pseudo;
+mainApp.controller('welcomeCtrl',function($scope,$http){
+
+    if($scope.jsonLang.lang === "fr"){
+        $http.get('./json/welcomeFr.json')
+            .success(function(data){
+                $scope.welcome = data;
+                for(var i in $scope.welcome){
+                    $scope.welcome[i].expand=false;
+                }
+
+            });
+    }else{
+        $http.get('./json/welcomeEng.json')
+            .success(function(data){
+                $scope.welcome = data;
+                for(var i in $scope.welcome){
+                    $scope.welcome[i].expand=false;
+                }
+
+            });
+    }
+
 });
 
 mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$cookieStore){

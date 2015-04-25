@@ -5,11 +5,37 @@
     <title></title>
 </head>
 <body>
-<div layout-margin layout="center center" layout-align="center center">
-    Hello {{pseudo}}
-</div >
-<div layout-margin layout="center center" layout-align="center center">
-    Pour naviguer sur le portail, appuyez sur le bandeau du haut et utiliser la barre de navigation qui va s'ouvrir à gauche
+
+<div class="widthBox">
+    <div  layout-margin layout="center center" layout-align="center center">
+        Bonjour {{pseudo}}
+    </div>
+
+    <div class="centerBoxStyle" ng-repeat="wel in welcome">
+
+        <div ng-click="wel.expand = !wel.expand">
+            <md-toolbar layout="center center" layout-align="center center">{{wel.title}}<br>{{wel.date}}</md-toolbar>
+        </div>
+
+        <div class="centerTxtReference" ng-show="wel.expand" >
+            <boxStyle>
+                <div ng-repeat="_url in wel.urls" layout-magin>
+                    {{_url.description}}
+                    <br>
+                    <br>
+                    <a href="{{_url.url}}">{{_url.nameSpaceUrl}}</a>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+            </boxStyle>
+        </div>
+    </div>
+
+
+
 </div>
+
 </body>
 </html>
