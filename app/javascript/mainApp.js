@@ -11,6 +11,7 @@ var jsonLang;
 
 var user = {'pseudo':'','email':'','token':0};
 
+var currentLang = "";
 
 mainApp.constant("appConfig",{
     path : {base : "http://localhost:3000"},
@@ -502,6 +503,22 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
 
     };
 
+    $scope.actionDel = function(ev){
+        // console.log("UYSER "+user.id);
+        // $scope.userId = user.id;
+        console.log("okokookkokoko");
+        var userToDel = new User;
+
+        userToDel.token = user.token;
+        userToDel.$remove(function(data){
+            $scope.showDeleteResult(ev,jsonLang.successDelete);
+            $scope.deconnect();
+        },function(err){
+            $scope.showDeleteResult(ev,jsonLang.failDelete);
+        });
+        $scope.closeDialog();
+    };
+
     $scope.showModifResult = function(ev,result) {
         $mdDialog.show(
             $mdDialog.alert()
@@ -512,6 +529,47 @@ mainApp.controller('profileCtrl',function($scope,User,$mdDialog){
                 .targetEvent(ev)
         );
     };
+
+    $scope.showDeleteResult = function(ev,result) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title(jsonLang.resultDelete)
+                .content(result)
+                .ok(jsonLang.continue)
+                .targetEvent(ev)
+        );
+    };
+
+    $scope.jsonLang = jsonLang;
+
+    $scope.delUser = function(ev){
+        $mdDialog.show({
+            targetEvent: ev,
+            template:
+            '<md-dialog>' +
+            '  <md-dialog-content style="margin-top: 5%;" layout="center center" layout-align="center center">{{jsonLang.confirmDelete}}</md-dialog-content>' +
+            '  <div class="md-actions">' +
+            '    <md-button ng-click="actionDel(ev)" class="md-raised md-warn">' +
+            '      {{jsonLang.deleteAccount}}' +
+            '    </md-button>' +
+            '    <md-button ng-click="closeDialog()" class="md-primary">' +
+            '       {{jsonLang.cancel}}' +
+            '    </md-button>' +
+            '  </div>' +
+            '</md-dialog>',
+            controller: 'profileCtrl',
+            onComplete: afterShowAnimation,
+            locals: { employee: $scope.userName }
+        });
+    };
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    function afterShowAnimation() {
+
+    }
 
 });
 

@@ -35,7 +35,14 @@
   "newPassword":"New password",
   "oldPassword":"Old password",
   "profileInfo":"Your profile",
-  "changeInfo":"Change informations"
+  "changeInfo":"Change informations",
+  "deleteAccount":"Delete Account",
+  "cancel":"Cancel",
+  "userDeleted":"User deleted",
+  "failDelete":"Fail to delete the user",
+  "successDelete":"Account deleted",
+  "resultDelete":"Delete information",
+  "confirmDelete":"Delete your account ?"
 
 
 

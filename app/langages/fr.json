@@ -35,5 +35,12 @@
   "newPassword":"Nouveau mot de passe",
   "oldPassword":"Ancien mot de passe",
   "profileInfo":"Votre profil",
-  "changeInfo":"Changer les informations"
+  "changeInfo":"Changer les informations",
+  "deleteAccount":"Supprimer le compte",
+  "cancel":"Annuler",
+  "userDeleted":"Utilisateur supprimé",
+  "failDelete":"Echec de suppression du compte",
+  "successDelete":"Compte supprimé",
+  "resultDelete":"Suppression du compte",
+  "confirmDelete":"Supprimer le compte ?"
 }

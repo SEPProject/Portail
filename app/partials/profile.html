@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div layout="center center" layout-align="center center">
+<div  layout="center center" layout-align="center center">
     <boxStyle>
 
         <div layout-margin layout="center center" layout-align="center center">
@@ -15,7 +15,7 @@
 
         </div>
 
-        <form name="signinForm">
+        <form style="padding-bottom: 2%;" name="signinForm">
 
             <md-input-container>
                 <label>{{jsonLang.login}}</label>
@@ -55,7 +55,8 @@
                 </div>
             </md-input-container>
 
-            <md-button ng-click="changeInfo($event)" ng-disabled="signinForm.pseudo.$error.required || signinForm.email.$error.required || signinForm.email.$error.email || pwdNotEqual.notEqual">Change info</md-button>
+            <md-button style="margin-bottom: 2%;" ng-click="changeInfo($event)" ng-disabled="signinForm.pseudo.$error.required || signinForm.email.$error.required || signinForm.email.$error.email || pwdNotEqual.notEqual">{{jsonLang.changeInfo}}</md-button>
+            <md-button ng-click="delUser($event)">{{jsonLang.deleteAccount}}</md-button>
 
         </form>
     </boxStyle>
