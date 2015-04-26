@@ -1,34 +1,20 @@
 [
   {
-    "title":"title",
+    "title":"Database",
     "urls":[
-      { "url":"tt",
-        "description":"descp"
+      { "url":"http://www.commentcamarche.net/contents/104-bases-de-donnees-introduction",
+        "description":"Useful link to begin with database."
       },
-      { "url":"bb",
-        "description":"ded"
+      { "url":"http://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/tp-un-mini-chat",
+        "description":"Tutorial to use it and try to build one."
       }
     ]
   },
   {
-    "title":"title",
+    "title":"Password security",
     "urls":[
-      { "url":"tt",
-        "description":"descp"
-      },
-      { "url":"bb",
-        "description":"ded"
-      }
-    ]
-  },
-  {
-    "title":"title",
-    "urls":[
-      { "url":"tt",
-        "description":"descp"
-      },
-      { "url":"bb",
-        "description":"ded"
+      { "url":"http://fr.wikipedia.org/wiki/Attaque_par_force_brute",
+        "description":"Wikipedia link which explain the brute force approch"
       }
     ]
   }
