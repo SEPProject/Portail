@@ -233,7 +233,6 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
            // user.id = data.id;
             user.token = data.token;
             isAdmin = data.admin;
-            $scope.isAdmin = isAdmin;
             $scope.userConnected =  true;
             $cookies.token = data.token;
             $location.path('/welcome');
