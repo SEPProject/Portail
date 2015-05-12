@@ -401,7 +401,6 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     applets.all = true;
     Applet.query(applets,function(data){
 
-        console.log("APPLETS"+JSON.stringify(data));
         $scope.applets = JSON.parse(JSON.stringify(data));
         for(var i in $scope.applets)
         {
