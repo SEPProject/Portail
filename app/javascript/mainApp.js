@@ -95,7 +95,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
     user.token =  $cookieStore.get('token');
     $scope.isAdmin = isAdmin;
 
-    console.log('token ask '+ user.token);
+    //console.log('token ask '+ user.token);
     if(user.token == 0 || 'undefined' == typeof user.token) {
         isConnected = false;
         isAdmin = false;
@@ -111,7 +111,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
             user.email = data[0].email;
             user.pseudo = data[0].login;
             $scope.pseudo = user.pseudo;
-            console.log(isAdmin+'li '+JSON.stringify(data));
+         //   console.log(isAdmin+'li '+JSON.stringify(data));
             isAdmin = data.admin;
         },function(err){
            // console.log('la');
@@ -237,7 +237,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
             $scope.userConnected =  true;
             $cookies.token = data.token;
             $location.path('/welcome');
-            console.log(isAdmin+'la '+JSON.stringify(data));
+          //  console.log(isAdmin+'la '+JSON.stringify(data));
             isConnected  = true;
         },function(err){
             console.log(err);
@@ -406,7 +406,7 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
         {
             $scope.applets[i].isCollapsed = true;
         }
-        console.log(JSON.stringify($scope.applets));
+        //console.log(JSON.stringify($scope.applets));
     },function(err){
 
     });
