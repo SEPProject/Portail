@@ -421,7 +421,7 @@ mainApp.controller('appletCtrl',function($scope,$http,$window,Applet,Domain,$coo
     });
 
     $scope.openDl = function(url){
-        $window.open('applets/'+url+'.jar','Download');
+        $window.open(url,'Download');
     }
 
     $scope.goWindow = function(url){
