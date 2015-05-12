@@ -93,6 +93,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
     }
 
     user.token =  $cookieStore.get('token');
+    $scope.isAdmin = isAdmin;
 
     console.log('token ask '+ user.token);
     if(user.token == 0 || 'undefined' == typeof user.token) {
@@ -112,7 +113,6 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
             $scope.pseudo = user.pseudo;
             console.log(isAdmin+'li '+JSON.stringify(data));
             isAdmin = data.admin;
-            $scope.isAdmin = isAdmin;
         },function(err){
            // console.log('la');
             isConnected = false;
