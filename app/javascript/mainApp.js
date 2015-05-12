@@ -787,7 +787,7 @@ mainApp.controller('bottomSheetCtrl',function($scope) {
     $scope.version = "v0.0.1"
 
     $scope.items = [
-        { name: 'Contact', icon: './bower_components/material-design-icons/notification/svg/design/ic_sms_24px.svg' },
+        { name: 'Contact', icon: '/home/insa/Portail/app/bower_components/material-design-icons/notification/svg/design/ic_sms_24px.svg' },
         { name: $scope.version, icon: '' }
     ];
 
