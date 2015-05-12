@@ -11,9 +11,9 @@
   "title":"Premiére applet online !",
   "date":"25/04/2015",
   "urls":[
-    { "url":"http://www.firstApplet.com",
+    { "url":"http://81.255.175.90/sep#/applets",
       "description":"Premiére applet de brute force enfin disponible sur le lien ci-dessous",
-      "nameSpaceUrl":"Premiére"
+      "nameSpaceUrl":"Premiére applet ici !"
     }
   ]
 },
