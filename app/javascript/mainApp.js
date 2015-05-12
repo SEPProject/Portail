@@ -110,7 +110,7 @@ mainApp.controller('mainCtrl',function($mdDialog,$scope,$mdSidenav,$location,$co
             user.email = data[0].email;
             user.pseudo = data[0].login;
             $scope.pseudo = user.pseudo;
-            console.log('li '+JSON.stringify(data));
+            console.log(isAdmin+'li '+JSON.stringify(data));
             isAdmin = data.admin;
             $scope.isAdmin = isAdmin;
         },function(err){
@@ -237,7 +237,7 @@ mainApp.controller('loginCtrl',function($http,$scope,$location,$cookies,UserActi
             $scope.userConnected =  true;
             $cookies.token = data.token;
             $location.path('/welcome');
-            console.log('li '+JSON.stringify(data));
+            console.log(isAdmin+'la '+JSON.stringify(data));
             isConnected  = true;
         },function(err){
             console.log(err);
