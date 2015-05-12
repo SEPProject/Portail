@@ -14,7 +14,7 @@ var user = {'pseudo':'','email':'','token':0};
 var currentLang = "";
 
 mainApp.constant("appConfig",{
-    path : {base : "http://localhost:3000"},
+    path : {base : "http://81.255.175.90:3000"},
     routes : {
         baseUrl : 'partials/',
         signin : {
